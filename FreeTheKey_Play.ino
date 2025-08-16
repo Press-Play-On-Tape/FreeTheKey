@@ -2,6 +2,7 @@
 
 void play_Init() { 
 
+    game.reset();
 
     game.setBlock(0, 1, 2, BlockType::Key);
     game.setBlock(1, 0, 0, BlockType::Block_21);
@@ -26,287 +27,380 @@ void play_Update() {
     uint8_t pressed = getPressedButtons();
     uint8_t justPressed = getJustPressedButtons();
     uint8_t selectedBlock_Idx = game.getBlock_Idx(game.getPlayer().getX(), game.getPlayer().getY());
-    Block block;
 
-    if (selectedBlock_Idx == Constants::NoBlock) {
-
-        block.setX(game.getPlayer().getX());
-        block.setY(game.getPlayer().getY());
-        block.setBlockType(BlockType::None);
-    
-    }
-    else {
-
-        block = game.getBlock(selectedBlock_Idx);
-
-    }
+    Block &block = game.getBlock(selectedBlock_Idx);
 
 
     game.incFrameCount();
 
+
+    // Toggle between menu and game ..
+
+    if (justPressed & B_BUTTON) {
+
+        switch (gameState) {
+
+            case GameState::Play:   
+
+                if (game.getUndoCount() == 0) {
+                    gameState = GameState::Play_Menu_ResetLevel;
+                }
+                else {
+                    gameState = GameState::Play_Menu_Undo;
+                }
+                break;
+
+            case GameState::Play_Menu_Undo:
+            case GameState::Play_Menu_ResetLevel:
+            case GameState::Play_Menu_MainMenu:
+                gameState = GameState::Play;
+                break;
+
+        }
+
+    }
+
+
     if (pressed & A_BUTTON) {
 
-        if (block.getBlockType() == BlockType::None) return;
+        switch (gameState) {
 
-        Block &selectedBlock = game.getBlock(selectedBlock_Idx);
-    
-        if (justPressed & LEFT_BUTTON) {
+            case GameState::Play:
 
-            switch (selectedBlock.getBlockType()) {
+                if (block.getBlockType() == BlockType::None) return;
+            
+                if (justPressed & LEFT_BUTTON) {
 
-                case BlockType::Block_12:
-                case BlockType::Block_13:
-                    break;
+                    switch (block.getBlockType()) {
 
-                case BlockType::Key:
-                case BlockType::Block_21:
-                case BlockType::Block_31:
+                        case BlockType::Block_12:
+                        case BlockType::Block_13:
+                            break;
 
-                    if (selectedBlock.getX() > 0 && game.getBlock_Idx(selectedBlock.getX() - 1, selectedBlock.getY()) == Constants::NoBlock) {
+                        case BlockType::Key:
+                        case BlockType::Block_21:
+                        case BlockType::Block_31:
 
-                        selectedBlock.decX();
-                        game.getPlayer().decX();
+                            if (block.getX() > 0 && game.getBlock_Idx(block.getX() - 1, block.getY()) == Constants::NoBlock) {
+
+                                game.captureMove();
+                                block.decX();
+                                game.getPlayer().decX();
+
+                            }
+                            break;
 
                     }
-                    break;
 
-            }
+                }
+            
+                else if (justPressed & RIGHT_BUTTON) {
+
+                    switch (block.getBlockType()) {
+
+                        case BlockType::Block_12:
+                        case BlockType::Block_13:
+                            break;
+
+                        case BlockType::Key:
+
+                            if (block.getY() == 2 && game.getBlock_Idx(block.getX() + 2, block.getY()) == Constants::NoBlock) {
+
+                                game.captureMove();
+                                block.incX();
+                                game.getPlayer().incX();
+
+                            }
+
+                            else if (block.getX() < 4 && game.getBlock_Idx(block.getX() + 2, block.getY()) == Constants::NoBlock) {
+
+                                game.captureMove();
+                                block.incX();
+                                game.getPlayer().incX();
+
+                            }
+                            break;
+
+                        case BlockType::Block_21:
+
+                            if (block.getX() < 4 && game.getBlock_Idx(block.getX() + 2, block.getY()) == Constants::NoBlock) {
+
+                                game.captureMove();
+                                block.incX();
+                                game.getPlayer().incX();
+
+                            }
+                            break;
+
+                        case BlockType::Block_31:
+
+                            if (block.getX() < 3 && game.getBlock_Idx(block.getX() + 3, block.getY()) == Constants::NoBlock) {
+
+                                game.captureMove();
+                                block.incX();
+                                game.getPlayer().incX();
+
+                            }
+                            break;
+
+                    }
+
+                }
+
+                else if (justPressed & UP_BUTTON) {
+
+                    switch (block.getBlockType()) {
+
+                        case BlockType::Key:
+                        case BlockType::Block_21:
+                        case BlockType::Block_31:
+                            break;
+
+                        case BlockType::Block_12:
+                        case BlockType::Block_13:
+
+                            if (block.getY() > 0 && game.getBlock_Idx(block.getX(), block.getY() - 1) == Constants::NoBlock) {
+
+                                game.captureMove();
+                                block.decY();
+                                game.getPlayer().decY();
+
+                            }
+                            break;
+
+                    }
+
+                }
+            
+                else if (justPressed & DOWN_BUTTON) {
+
+                    switch (block.getBlockType()) {
+
+                        case BlockType::Key:
+                        case BlockType::Block_21:
+                        case BlockType::Block_31:
+                            break;
+
+                        case BlockType::Block_12:
+
+                            if (block.getY() < 4 && game.getBlock_Idx(block.getX(), block.getY() + 2) == Constants::NoBlock) {
+
+                                game.captureMove();
+                                block.incY();
+                                game.getPlayer().incY();
+
+                            }
+                            break;
+
+                        case BlockType::Block_13:
+
+                            if (block.getY() < 3 && game.getBlock_Idx(block.getX(), block.getY() + 3) == Constants::NoBlock) {
+
+                                game.captureMove();
+                                block.incY();
+                                game.getPlayer().incY();
+
+                            }
+                            break;
+
+                    }
+
+                }
+
+                break;
+
+            default:
+                break;
 
         }
-    
-        else if (justPressed & RIGHT_BUTTON) {
 
-            switch (selectedBlock.getBlockType()) {
+    }
+    else if (justPressed & A_BUTTON) {
 
-                case BlockType::Block_12:
-                case BlockType::Block_13:
-                    break;
+        switch (gameState) {
 
-                case BlockType::Key:
+            case GameState::Play:
+                break;
 
-                    if (selectedBlock.getY() == 2 && game.getBlock_Idx(selectedBlock.getX() + 2, selectedBlock.getY()) == Constants::NoBlock) {
+            case GameState::Play_Menu_Undo:
+                game.revertMove();
+                if (game.getUndoCount() == 0) {
+                    gameState = GameState::Play;
+                }
+                break;
 
-                        selectedBlock.incX();
-                        game.getPlayer().incX();
+            case GameState::Play_Menu_ResetLevel:
+                gameState = GameState::Play_Init;
+                break;
 
-                    }
-
-                    else if (selectedBlock.getX() < 4 && game.getBlock_Idx(selectedBlock.getX() + 2, selectedBlock.getY()) == Constants::NoBlock) {
-
-                        selectedBlock.incX();
-                        game.getPlayer().incX();
-
-                    }
-                    break;
-
-                case BlockType::Block_21:
-
-                    if (selectedBlock.getX() < 4 && game.getBlock_Idx(selectedBlock.getX() + 2, selectedBlock.getY()) == Constants::NoBlock) {
-
-                        selectedBlock.incX();
-                        game.getPlayer().incX();
-
-                    }
-                    break;
-
-                case BlockType::Block_31:
-
-                    if (selectedBlock.getX() < 3 && game.getBlock_Idx(selectedBlock.getX() + 3, selectedBlock.getY()) == Constants::NoBlock) {
-
-                        selectedBlock.incX();
-                        game.getPlayer().incX();
-
-                    }
-                    break;
-
-            }
-
-        }
-
-        else if (justPressed & UP_BUTTON) {
-
-            switch (selectedBlock.getBlockType()) {
-
-                case BlockType::Key:
-                case BlockType::Block_21:
-                case BlockType::Block_31:
-                    break;
-
-                case BlockType::Block_12:
-                case BlockType::Block_13:
-
-                    if (selectedBlock.getY() > 0 && game.getBlock_Idx(selectedBlock.getX(), selectedBlock.getY() - 1) == Constants::NoBlock) {
-
-                        selectedBlock.decY();
-                        game.getPlayer().decY();
-
-                    }
-                    break;
-
-            }
-
-        }
-    
-        else if (justPressed & DOWN_BUTTON) {
-
-            switch (selectedBlock.getBlockType()) {
-
-                case BlockType::Key:
-                case BlockType::Block_21:
-                case BlockType::Block_31:
-                    break;
-
-                case BlockType::Block_12:
-
-                    if (selectedBlock.getY() < 4 && game.getBlock_Idx(selectedBlock.getX(), selectedBlock.getY() + 2) == Constants::NoBlock) {
-
-                        selectedBlock.incY();
-                        game.getPlayer().incY();
-
-                    }
-                    break;
-
-                case BlockType::Block_13:
-
-                    if (selectedBlock.getY() < 3 && game.getBlock_Idx(selectedBlock.getX(), selectedBlock.getY() + 3) == Constants::NoBlock) {
-
-                        selectedBlock.incY();
-                        game.getPlayer().incY();
-
-                    }
-                    break;
-
-            }
+            case GameState::Play_Menu_MainMenu:
+                gameState = GameState::Title_Init;
+                break;
 
         }
 
     }
     else {
 
-        if (justPressed & LEFT_BUTTON) {
+        switch (gameState) {
 
-            switch (block.getBlockType()) {
-                        
-                case BlockType::None:
-                case BlockType::Block_12:
-                case BlockType::Block_13:
+            case GameState::Play:
+                    
+                if (justPressed & LEFT_BUTTON) {
 
-                    if (game.getPlayer().getX() > 0) game.getPlayer().decX();
-                    break;
-                        
-                case BlockType::Key:
-                case BlockType::Block_21:
-                case BlockType::Block_31:
+                    switch (block.getBlockType()) {
+                                
+                        case BlockType::None:
+                        case BlockType::Block_12:
+                        case BlockType::Block_13:
 
-                    if (block.getX() > 0) {
-                        game.getPlayer().setX(block.getX() - 1);
+                            if (game.getPlayer().getX() > 0) game.getPlayer().decX();
+                            break;
+                                
+                        case BlockType::Key:
+                        case BlockType::Block_21:
+                        case BlockType::Block_31:
+
+                            if (block.getX() > 0) {
+                                game.getPlayer().setX(block.getX() - 1);
+                            }
+                            else {
+                                game.getPlayer().setX(0);
+                            }
+                            break;
+
                     }
-                    else {
-                        game.getPlayer().setX(0);
+                    
+                }
+
+                else if (justPressed & RIGHT_BUTTON) {
+
+                    switch (block.getBlockType()) {
+                                
+                        case BlockType::None:
+                        case BlockType::Block_12:
+                        case BlockType::Block_13:
+
+                            if (game.getPlayer().getX() < 5) game.getPlayer().incX();
+                            break;
+                                
+                        case BlockType::Key:
+                        case BlockType::Block_21:
+
+                            if (block.getX() < 4) {
+                                game.getPlayer().setX(block.getX() + 2);
+                            }
+                            else {
+                                game.getPlayer().setX(5);
+                            }
+                            break;
+                                
+                        case BlockType::Block_31:
+
+                            if (block.getX() < 3) {
+                                game.getPlayer().setX(block.getX() + 3);
+                            }
+                            else {
+                                game.getPlayer().setX(5);
+                            }
+                            break;
+
                     }
-                    break;
+                    
+                }
 
-            }
-            
-        }
+                else if (justPressed & UP_BUTTON) {
 
-        else if (justPressed & RIGHT_BUTTON) {
+                    switch (block.getBlockType()) {
+                                
+                        case BlockType::None:
+                        case BlockType::Key:
+                        case BlockType::Block_21:
+                        case BlockType::Block_31:
 
-            switch (block.getBlockType()) {
-                        
-                case BlockType::None:
-                case BlockType::Block_12:
-                case BlockType::Block_13:
+                            if (game.getPlayer().getY() > 0) game.getPlayer().decY();
+                            break;
+                                
+                        case BlockType::Block_12:
+                        case BlockType::Block_13:
 
-                    if (game.getPlayer().getX() < 5) game.getPlayer().incX();
-                    break;
-                        
-                case BlockType::Key:
-                case BlockType::Block_21:
+                            if (block.getY() > 0) {
+                                game.getPlayer().setY(block.getY() - 1);
+                            }
+                            else {
+                                game.getPlayer().setY(0);
+                            }
+                            break;
 
-                    if (block.getX() < 4) {
-                        game.getPlayer().setX(block.getX() + 2);
                     }
-                    else {
-                        game.getPlayer().setX(5);
+                    
+                }
+
+                else if (justPressed & DOWN_BUTTON) {
+
+                    switch (block.getBlockType()) {
+                                
+                        case BlockType::None:
+                        case BlockType::Key:
+                        case BlockType::Block_21:
+                        case BlockType::Block_31:
+
+                            if (game.getPlayer().getY() < 5) game.getPlayer().incY();
+                            break;
+                                
+                        case BlockType::Block_12:
+
+                            if (block.getY() < 4) {
+                                game.getPlayer().setY(block.getY() + 2);
+                            }
+                            else {
+                                game.getPlayer().setY(5);
+                            }
+                            break;
+                                
+                        case BlockType::Block_13:
+
+                            if (block.getY() < 3) {
+                                game.getPlayer().setY(block.getY() + 3);
+                            }
+                            else {
+                                game.getPlayer().setY(5);
+                            }
+                            break;
+
                     }
-                    break;
-                        
-                case BlockType::Block_31:
+                    
+                }
 
-                    if (block.getX() < 3) {
-                        game.getPlayer().setX(block.getX() + 3);
-                    }
-                    else {
-                        game.getPlayer().setX(5);
-                    }
-                    break;
+                break;
 
-            }
-            
-        }
+            case GameState::Play_Menu_Undo:
 
-        else if (justPressed & UP_BUTTON) {
+                if (justPressed & DOWN_BUTTON) {
+                    gameState = GameState::Play_Menu_ResetLevel;
+                }
 
-            switch (block.getBlockType()) {
-                        
-                case BlockType::None:
-                case BlockType::Key:
-                case BlockType::Block_21:
-                case BlockType::Block_31:
+                break;
 
-                    if (game.getPlayer().getY() > 0) game.getPlayer().decY();
-                    break;
-                        
-                case BlockType::Block_12:
-                case BlockType::Block_13:
+            case GameState::Play_Menu_ResetLevel:
 
-                    if (block.getY() > 0) {
-                        game.getPlayer().setY(block.getY() - 1);
-                    }
-                    else {
-                        game.getPlayer().setY(0);
-                    }
-                    break;
+                if (justPressed & UP_BUTTON && game.getUndoCount() > 0) {
+                    gameState = GameState::Play_Menu_Undo;
+                }
+                else if (justPressed & DOWN_BUTTON) {
+                    gameState = GameState::Play_Menu_MainMenu;
+                }
 
-            }
-            
-        }
+                break;
 
-        else if (justPressed & DOWN_BUTTON) {
+            case GameState::Play_Menu_MainMenu:
 
-            switch (block.getBlockType()) {
-                        
-                case BlockType::None:
-                case BlockType::Key:
-                case BlockType::Block_21:
-                case BlockType::Block_31:
+                if (justPressed & UP_BUTTON) {
+                    gameState = GameState::Play_Menu_ResetLevel;
+                }
 
-                    if (game.getPlayer().getY() < 5) game.getPlayer().incY();
-                    break;
-                        
-                case BlockType::Block_12:
+                break;
 
-                    if (block.getY() < 4) {
-                        game.getPlayer().setY(block.getY() + 2);
-                    }
-                    else {
-                        game.getPlayer().setY(5);
-                    }
-                    break;
-                        
-                case BlockType::Block_13:
-
-                    if (block.getY() < 3) {
-                        game.getPlayer().setY(block.getY() + 3);
-                    }
-                    else {
-                        game.getPlayer().setY(5);
-                    }
-                    break;
-
-            }
-            
         }
 
     }
@@ -319,13 +413,29 @@ void play(ArduboyGBase_Config<ABG_Mode::L4_Triplane> &a) {
     uint8_t currentPlane = a.currentPlane();
     if (a.needsUpdate()) play_Update();
 
-    SpritesU::drawOverwriteFX(0,  0, Images::Background, currentPlane);
+    SpritesU::drawOverwriteFX(0, 0, Images::Background, currentPlane);
+
+    uint8_t menu_Idx = gameState == GameState::Play_Init ? 0 : static_cast<uint8_t>(gameState) - static_cast<uint8_t>(GameState::Play);
+    if (game.getUndoCount() > 0) menu_Idx = menu_Idx + 4;
+    SpritesU::drawOverwriteFX(83, 38, Images::Menu, (menu_Idx * 3) + currentPlane);
+
+
+    // Level ..
+
+    SpritesU::drawOverwriteFX(113, 0, Images::Numbers_5x3_2D_MB, ((game.getLevel() + 1) * 3) + currentPlane);
+
+
+    // Moves ..
+
+    SpritesU::drawOverwriteFX(109, 8, Images::Numbers_5x3_1D_MB, ((game.getMoveCount() / 100) * 3) + currentPlane);
+    SpritesU::drawOverwriteFX(113, 8, Images::Numbers_5x3_2D_MB, ((game.getMoveCount() % 100) * 3) + currentPlane);
+
 
 
     uint8_t selectedBlock = game.getBlock_Idx(game.getPlayer().getX(), game.getPlayer().getY());
 
 
-    for (uint8_t i = 0; i < Constants::BlockCount; i++) {
+    for (uint8_t i = 0; i < Constants::Block_Count; i++) {
 
         uint8_t idx = (i == selectedBlock ? game.getFrameCount(48) * 3 : 0);
 
@@ -337,23 +447,23 @@ void play(ArduboyGBase_Config<ABG_Mode::L4_Triplane> &a) {
                 break;
 
             case BlockType::Key:
-                SpritesU::drawPlusMaskFX(11 + (10 * block.getX()),  2 + (10 * block.getY()), Images::Key, idx + currentPlane);
+                SpritesU::drawPlusMaskFX(Constants::Grid_Left +  (Constants::Grid_Size * block.getX()),  Constants::Grid_Top + (Constants::Grid_Size * block.getY()), Images::Key, idx + currentPlane);
                 break;
 
             case BlockType::Block_21:
-                SpritesU::drawPlusMaskFX(11 + (10 * block.getX()),  2 + (10 * block.getY()), Images::Block_21, idx + currentPlane);
+                SpritesU::drawPlusMaskFX(Constants::Grid_Left +  (Constants::Grid_Size * block.getX()),  Constants::Grid_Top + (Constants::Grid_Size * block.getY()), Images::Block_21, idx + currentPlane);
                 break;
 
             case BlockType::Block_31:
-                SpritesU::drawPlusMaskFX(11 + (10 * block.getX()),  2 + (10 * block.getY()), Images::Block_31, idx + currentPlane);
+                SpritesU::drawPlusMaskFX(Constants::Grid_Left +  (Constants::Grid_Size * block.getX()),  Constants::Grid_Top + (Constants::Grid_Size * block.getY()), Images::Block_31, idx + currentPlane);
                 break;
 
             case BlockType::Block_12:
-                SpritesU::drawPlusMaskFX(11 + (10 * block.getX()),  2 + (10 * block.getY()), Images::Block_12, idx + currentPlane);
+                SpritesU::drawPlusMaskFX(Constants::Grid_Left +  (Constants::Grid_Size * block.getX()),  Constants::Grid_Top + (Constants::Grid_Size * block.getY()), Images::Block_12, idx + currentPlane);
                 break;
 
             case BlockType::Block_13:
-                SpritesU::drawPlusMaskFX(11 + (10 * block.getX()),  2 + (10 * block.getY()), Images::Block_13, idx + currentPlane);
+                SpritesU::drawPlusMaskFX(Constants::Grid_Left +  (Constants::Grid_Size * block.getX()),  Constants::Grid_Top + (Constants::Grid_Size * block.getY()), Images::Block_13, idx + currentPlane);
                 break;
                 
         }
@@ -362,7 +472,7 @@ void play(ArduboyGBase_Config<ABG_Mode::L4_Triplane> &a) {
         if (selectedBlock == Constants::NoBlock) {
 
             idx = game.getFrameCount(48) * 3;
-            SpritesU::drawPlusMaskFX(11 + (10 * game.getPlayer().getX()),  2 + (10 * game.getPlayer().getY()), Images::Cursor, idx + currentPlane);
+            SpritesU::drawPlusMaskFX(Constants::Grid_Left +  (Constants::Grid_Size * game.getPlayer().getX()),  Constants::Grid_Top + (Constants::Grid_Size * game.getPlayer().getY()), Images::Cursor, idx + currentPlane);
 
         }
 

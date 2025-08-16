@@ -5,24 +5,82 @@
 #include "../utils/Enums.h"
 #include "Player.h"
 #include "Block.h"
+#include "Level.h"
 
 struct Game {
 
     private:
 
         Player player;
-        Block blocks[Constants::BlockCount];
+        Level levels[Constants::Level_Count];
+        Block blocks[Constants::Block_Count];
         uint16_t frameCount = 0;
+        uint16_t moveCount = 0;
+        uint8_t undoCount = 0;
+        uint8_t level = 0;
 
     public:
 
-        
+        uint8_t getLevel()                              { return this->level; }
+        Level &getLevel(uint8_t level)                  { return this->levels[level]; }
+        uint8_t getUndoCount()                          { return this->undoCount; }
+        uint16_t getMoveCount()                         { return this->moveCount; }
         uint16_t getFrameCount()                        { return this->frameCount; }
         uint16_t getFrameCount(uint8_t half)            { return (this->frameCount % half) < (half / 2); }
         Player &getPlayer()                             { return this->player; }
         Block &getBlock(uint8_t idx)                    { return this->blocks[idx]; }
 
+        void setLevel(uint8_t val)                      { this->level = val; }
         void setFrameCount(uint16_t val)                { this->frameCount = val; }
+
+        void reset() {
+        
+            this->player.reset();
+            this->undoCount = 0;
+            this->moveCount = 0;
+
+            for (uint8_t i = 0; i < Constants::Block_Count; i++) {
+            
+                Block &block = this->blocks[i];
+                block.reset();
+
+            }
+            
+        }
+
+        void captureMove() {
+
+            this->player.captureMove();
+
+            for (uint8_t i = 0; i < Constants::Block_Count; i++) {
+            
+                Block &block = this->blocks[i];
+                block.captureMove();
+
+            }
+
+            this->moveCount++;
+            if (this->undoCount < Constants::Undo_Count) this->undoCount++;
+
+        }
+
+        void revertMove() {
+
+            if (this->undoCount == 0) return;
+
+            this->moveCount--;
+            this->player.revertMove();
+
+            for (uint8_t i = 0; i < Constants::Block_Count; i++) {
+            
+                Block &block = this->blocks[i];
+                block.revertMove();
+
+            }
+
+            this->undoCount--;
+
+        }
 
         void incFrameCount() {
 
@@ -48,7 +106,7 @@ struct Game {
 
         uint8_t getBlock_Idx(uint8_t x, uint8_t y) {
         
-            for (uint8_t i = 0; i < Constants::BlockCount; i++) {
+            for (uint8_t i = 0; i < Constants::Block_Count; i++) {
             
                 Block &block = this->blocks[i];
 

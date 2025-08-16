@@ -123,9 +123,15 @@ convert_header(IMAGES + 'HUD/HUD_Bottom.png',                                   
 convert_header(IMAGES + 'Titles/FreeTheKey.png',                                               BASE + 'Images.hpp', 'FreeTheKey', 4, 128, 64)
 
 convert_header(IMAGES + 'Background.png',                                                       BASE + 'Images.hpp', 'Background', 4, 128, 64)
+convert_header(IMAGES + 'Menu.png',                                                             BASE + 'Images.hpp', 'Menu', 4, 45, 24)
 convert_header(IMAGES + 'Block_12.png',                                                         BASE + 'Images.hpp', 'Block_12', 4, 9, 24)
 convert_header(IMAGES + 'Block_13.png',                                                         BASE + 'Images.hpp', 'Block_13', 4, 9, 32)
 convert_header(IMAGES + 'Block_21.png',                                                         BASE + 'Images.hpp', 'Block_21', 4, 19, 16)
 convert_header(IMAGES + 'Block_31.png',                                                         BASE + 'Images.hpp', 'Block_31', 4, 29, 16)
 convert_header(IMAGES + 'Key.png',                                                              BASE + 'Images.hpp', 'Key', 4, 19, 16)
 convert_header(IMAGES + 'Cursor.png',                                                           BASE + 'Images.hpp', 'Cursor', 4, 9, 16)
+convert_header(IMAGES + 'Levels.png',                                                           BASE + 'Images.hpp', 'Levels', 4, 16, 16)
+convert_header(IMAGES + 'Levels_Cursor.png',                                                    BASE + 'Images.hpp', 'Levels_Cursor', 4)
+convert_header(IMAGES + 'Numbers/Numbers_5x3_1D_MB.png',                                        BASE + 'Images.hpp', 'Numbers_5x3_1D_MB', 4, 3, 8)
+convert_header(IMAGES + 'Numbers/Numbers_5x3_2D_MB.png',                                        BASE + 'Images.hpp', 'Numbers_5x3_2D_MB', 4, 7, 8)
+

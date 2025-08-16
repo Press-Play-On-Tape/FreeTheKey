@@ -50,6 +50,23 @@ void setup() {
 
     game.setFrameCount(0);
 
+    game.getLevel(0).setComplete(true);
+    game.getLevel(1).setComplete(true);
+    game.getLevel(2).setComplete(true);
+    game.getLevel(3).setComplete(true);
+    game.getLevel(4).setComplete(true);
+    game.getLevel(5).setComplete(true);
+    game.getLevel(6).setComplete(true);
+    game.getLevel(7).setComplete(true);
+    game.getLevel(8).setComplete(true);
+    game.getLevel(9).setComplete(true);
+    game.getLevel(10).setComplete(true);
+    game.getLevel(11).setComplete(true);
+
+    for (uint8_t i = 0; i < 40; i++) {
+    game.getLevel(i).setComplete(true);
+    }
+
 }
 
 void loop() {

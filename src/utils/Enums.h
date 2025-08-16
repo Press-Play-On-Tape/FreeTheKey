@@ -11,13 +11,17 @@ enum class GameState : uint8_t {
 
     Title_Init,
     Title_Start,
-        Title_OptPlay = Title_Start,
+        Title_Main = Title_Start,
+        Title_Select,
     Title_End,
 
     Play_Init,
     Play_Start,
         Play = Play_Start,
-    Play_End = Play,
+        Play_Menu_Undo,
+        Play_Menu_ResetLevel,
+        Play_Menu_MainMenu,
+    Play_End = Play_Menu_MainMenu,
     
 };
 

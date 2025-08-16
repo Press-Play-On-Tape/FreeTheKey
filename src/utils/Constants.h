@@ -4,59 +4,24 @@
 
 #define _DEBUG_PRINT    Serial.print
 #define _DEBUG_PRINTLN  Serial.println
-#define _DEBUG_BREAK    asm volatile("break\n");
+#define DEBUG_BREAK    asm volatile("break\n");
 
 #define _DEBUG
-#define _DEBUG_SKIP_DEAL
-#define _DEBUG_BASIC
 #define _DEBUG_RAND
 
-
-// Bidding
-
-#define _DEBUG_EVALUATE
-#define _DEBUG_EVALUATE_SUIT
-#define _DEBUG_EVALUATE_NOTRUMPS
-#define _DEBUG_EVALUATE_MISERE
-
-#define _DEBUG_PREPARE_SUIT_PILES
-#define _DEBUG_CALC_MISERE_SCORE
-#define _DEBUG_ELEVPART_EVALUATE
-
-#ifdef OPEN_MISERE
-#define _DEBUG_EVALUATE_OPEN_MISERE
-#endif
-
-//Kitty
-
-#define _DEBUG_HANDLEKITTY_TRUMPS
-#define _DEBUG_HANDLEKITTY_MISERE
-
-//Play
-
-#define _DEBUG_PLAYER_WINNING_HAND
-#define _DEBUG_PLAYNOTRUMPS_LEAD
-#define _DEBUG_PLAYNOTRUMPS_FOLLOW
-#define _DEBUG_PLAYSUIT_LEAD;
-#define _DEBUG_PLAYSUIT_FOLLOW;
-#define _DEBUG_PLAYMISERE_LEAD
-#define _DEBUG_PLAYMISERE_FOLLOW
-#define _DEBUG_MARKCARDPLAYED
-#define _DEBUG_HASCARDBEENPLAYED
-#define _DEBUG_GETTOP_INSUIT
-#define _DEBUG_SORT
-#define _DEBUG_SORT_DETAIL
-#define _DEBUG_PLAY_ADDCARD
-#define _DEBUG_DISCARDALL_INSUIT
-#define _DEBUG_DISCARDCARD
-#define _DEBUG_GETBOTTOM_INSUIT
-#define _DEBUG_GETNEXTLOWEST_INSUIT
-#define _DEBUG_NUMBER_OF_UNPLAYED_CARDS
 
 
 namespace Constants {
 
-    constexpr uint8_t BlockCount = 12;
-    constexpr uint8_t NoBlock = 255;
+    constexpr uint8_t levelSelect_Offset[] = { 0, 0, 6, 21, 36, 42, 57, 57};
+
+    constexpr uint8_t Level_Count = 40;
+    constexpr uint8_t Block_Count = 25;
+    constexpr uint8_t Undo_Count = 30;
+    constexpr uint8_t NoBlock = Block_Count - 1;
+
+    constexpr uint8_t Grid_Size = 10;
+    constexpr uint8_t Grid_Left = 7;
+    constexpr uint8_t Grid_Top = 2;
 
 };
