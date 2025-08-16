@@ -50,22 +50,22 @@ void setup() {
 
     game.setFrameCount(0);
 
-    game.getLevel(0).setComplete(true);
-    game.getLevel(1).setComplete(true);
-    game.getLevel(2).setComplete(true);
-    game.getLevel(3).setComplete(true);
-    game.getLevel(4).setComplete(true);
-    game.getLevel(5).setComplete(true);
-    game.getLevel(6).setComplete(true);
-    game.getLevel(7).setComplete(true);
-    game.getLevel(8).setComplete(true);
-    game.getLevel(9).setComplete(true);
-    game.getLevel(10).setComplete(true);
-    game.getLevel(11).setComplete(true);
+    game.getPuzzle(0).setStatus(PuzzleStatus::Complete);
+    game.getPuzzle(1).setStatus(PuzzleStatus::Complete);
+    game.getPuzzle(2).setStatus(PuzzleStatus::Complete);
+    game.getPuzzle(3).setStatus(PuzzleStatus::Complete);
+    game.getPuzzle(4).setStatus(PuzzleStatus::Complete);
+    game.getPuzzle(5).setStatus(PuzzleStatus::Complete);
+    game.getPuzzle(6).setStatus(PuzzleStatus::Complete);
+    game.getPuzzle(7).setStatus(PuzzleStatus::Complete);
+    game.getPuzzle(8).setStatus(PuzzleStatus::Complete);
+    game.getPuzzle(9).setStatus(PuzzleStatus::Complete);
+    game.getPuzzle(10).setStatus(PuzzleStatus::Complete);
+    game.getPuzzle(11).setStatus(PuzzleStatus::InProgress);
 
-    for (uint8_t i = 0; i < 40; i++) {
-    game.getLevel(i).setComplete(true);
-    }
+    // for (uint8_t i = 0; i < 40; i++) {
+    // game.getPuzzle(i).setComplete(true);
+    // }
 
 }
 

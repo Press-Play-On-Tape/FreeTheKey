@@ -55,3 +55,9 @@ enum BlockType : uint8_t {
     Block_21,
     Block_31,
 };
+
+enum PuzzleStatus : uint8_t { 
+    Locked,
+    Complete,
+    InProgress,
+};

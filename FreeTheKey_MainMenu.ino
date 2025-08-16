@@ -44,19 +44,24 @@ void title_Update() {
 
         case GameState::Title_Select:
 
+            if (justPressed & A_BUTTON) {
+                game.setLevel(selectedPuzzle);
+                gameState = GameState::Play_Init;
+            }
+
             if (justPressed & LEFT_BUTTON && selectedPuzzleX > 0) {
 
                 selectedPuzzleX--;
 
             }
 
-            if (justPressed & RIGHT_BUTTON && selectedPuzzleX < 4 && game.getLevel(selectedPuzzle + 1).isComplete()) {
+            if (justPressed & RIGHT_BUTTON && selectedPuzzleX < 4 && game.getPuzzle(selectedPuzzle + 1).getStatus() != PuzzleStatus::Locked) {
 
                 selectedPuzzleX++;
 
             }
 
-            if (justPressed & DOWN_BUTTON && selectedPuzzleY < 7 && game.getLevel(selectedPuzzle + 5).isComplete()) {
+            if (justPressed & DOWN_BUTTON && selectedPuzzleY < 7 && game.getPuzzle(selectedPuzzle + 5).getStatus() != PuzzleStatus::Locked) {
 
                 selectedPuzzleY++;
 
@@ -89,31 +94,33 @@ void title(ArduboyGBase_Config<ABG_Mode::L4_Triplane> &a) {
             break;
 
         case GameState::Title_Select:
-            {
 
-                for (uint8_t y = 0; y < 8; y++) {
+            for (uint8_t y = 0; y < 8; y++) {
 
-                    for (uint8_t x = 0; x < 5; x++) {
+                for (uint8_t x = 0; x < 5; x++) {
 
-                        Level &level = game.getLevel((y * 5) + x);
+                    Puzzle &puzzle = game.getPuzzle((y * 5) + x);
 
-                        if (level.isComplete()) {
+                    if (puzzle.getStatus() == PuzzleStatus::Complete) {
 
-                            SpritesU::drawOverwriteFX(x * 15, (y * 15) - yOffset, Images::Levels, ((((y * 5) + x) + 1) * 3) + currentPlane);
+                        SpritesU::drawOverwriteFX(x * 15, (y * 15) - yOffset, Images::Levels, ((((y * 5) + x) + 1) * 3) + currentPlane);
 
-                        }
-                        else {
+                    }
+                    else if (puzzle.getStatus() == PuzzleStatus::InProgress) {
 
-                            SpritesU::drawOverwriteFX(x * 15, (y * 15) - yOffset, Images::Levels, (41 * 3) + currentPlane);
+                        SpritesU::drawOverwriteFX(x * 15, (y * 15) - yOffset, Images::Levels, ((((y * 5) + x) + 51) * 3) + currentPlane);
 
-                        }
+                    }                        
+                    else {
 
-                        if (((y * 5) + x) == selectedPuzzle) {
+                        SpritesU::drawOverwriteFX(x * 15, (y * 15) - yOffset, Images::Levels, (41 * 3) + currentPlane);
 
-                            if (game.getFrameCount(48)) {
-                                SpritesU::drawPlusMaskFX(x * 15, (y * 15) - yOffset, Images::Levels_Cursor, currentPlane);
-                            }
+                    }
 
+                    if (((y * 5) + x) == selectedPuzzle) {
+
+                        if (game.getFrameCount(48)) {
+                            SpritesU::drawPlusMaskFX(x * 15, (y * 15) - yOffset, Images::Levels_Cursor, currentPlane);
                         }
 
                     }

@@ -4,19 +4,19 @@
 #include "../utils/Constants.h"
 #include "../utils/Enums.h"
 
-struct Level {
+struct Puzzle {
 
     private:
 
-        bool complete = false;
+        PuzzleStatus status = PuzzleStatus::Locked;
         uint16_t numberOfMoves;
 
     public:
 
         uint16_t getNumberOfMoves() const               { return this->numberOfMoves; }
-        bool isComplete() const                         { return this->complete; }
+        PuzzleStatus getStatus() const                  { return this->status; }
 
         void setNumberOfMoves(uint16_t val)             { this->numberOfMoves = val; }
-        void setComplete(bool val)                      { this->complete = val; }
+        void setStatus(PuzzleStatus val)                { this->status = val; }
 
 };

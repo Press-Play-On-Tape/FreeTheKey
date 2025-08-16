@@ -6,8 +6,8 @@ using uint24_t = __uint24;
 
 // Initialize FX hardware using  FX::begin(FX_DATA_PAGE); in the setup() function.
 
-constexpr uint16_t FX_DATA_PAGE  = 0xfd73;
-constexpr uint24_t FX_DATA_BYTES = 163018;
+constexpr uint16_t FX_DATA_PAGE  = 0xfd60;
+constexpr uint24_t FX_DATA_BYTES = 167818;
 
 constexpr uint16_t FX_SAVE_PAGE  = 0xfff0;
 constexpr uint24_t FX_SAVE_BYTES = 2;
@@ -63,8 +63,8 @@ namespace Images
   constexpr uint24_t Key = 0x025E10;
   constexpr uint24_t Cursor = 0x025FDA;
   constexpr uint24_t Levels = 0x0260B4;
-  constexpr uint24_t Levels_Cursor = 0x027376;
-  constexpr uint24_t Numbers_5x3_1D_MB = 0x027438;
-  constexpr uint24_t Numbers_5x3_2D_MB = 0x027494;
+  constexpr uint24_t Levels_Cursor = 0x028636;
+  constexpr uint24_t Numbers_5x3_1D_MB = 0x0286F8;
+  constexpr uint24_t Numbers_5x3_2D_MB = 0x028754;
 }
 

@@ -468,13 +468,12 @@ void play(ArduboyGBase_Config<ABG_Mode::L4_Triplane> &a) {
                 
         }
 
+    }
 
-        if (selectedBlock == Constants::NoBlock) {
+    if (selectedBlock == Constants::NoBlock) {
 
-            idx = game.getFrameCount(48) * 3;
-            SpritesU::drawPlusMaskFX(Constants::Grid_Left +  (Constants::Grid_Size * game.getPlayer().getX()),  Constants::Grid_Top + (Constants::Grid_Size * game.getPlayer().getY()), Images::Cursor, idx + currentPlane);
-
-        }
+        uint8_t idx = game.getFrameCount(48) * 3;
+        SpritesU::drawPlusMaskFX(Constants::Grid_Left +  (Constants::Grid_Size * game.getPlayer().getX()),  Constants::Grid_Top + (Constants::Grid_Size * game.getPlayer().getY()), Images::Cursor, idx + currentPlane);
 
     }
 

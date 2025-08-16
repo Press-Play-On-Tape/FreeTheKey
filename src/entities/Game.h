@@ -5,14 +5,14 @@
 #include "../utils/Enums.h"
 #include "Player.h"
 #include "Block.h"
-#include "Level.h"
+#include "Puzzle.h"
 
 struct Game {
 
     private:
 
         Player player;
-        Level levels[Constants::Level_Count];
+        Puzzle puzzles[Constants::Level_Count];
         Block blocks[Constants::Block_Count];
         uint16_t frameCount = 0;
         uint16_t moveCount = 0;
@@ -22,7 +22,7 @@ struct Game {
     public:
 
         uint8_t getLevel()                              { return this->level; }
-        Level &getLevel(uint8_t level)                  { return this->levels[level]; }
+        Puzzle &getPuzzle(uint8_t level)                { return this->puzzles[level]; }
         uint8_t getUndoCount()                          { return this->undoCount; }
         uint16_t getMoveCount()                         { return this->moveCount; }
         uint16_t getFrameCount()                        { return this->frameCount; }
@@ -113,7 +113,7 @@ struct Game {
                 switch ( block.getBlockType()) {
                 
                     case BlockType::None:
-                        continue;
+                        return Constants::NoBlock;
 
                     case BlockType::Block_12:
 
