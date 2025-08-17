@@ -6,8 +6,8 @@ using uint24_t = __uint24;
 
 // Initialize FX hardware using  FX::begin(FX_DATA_PAGE); in the setup() function.
 
-constexpr uint16_t FX_DATA_PAGE  = 0xfd5d;
-constexpr uint24_t FX_DATA_BYTES = 168466;
+constexpr uint16_t FX_DATA_PAGE  = 0xfd5c;
+constexpr uint24_t FX_DATA_BYTES = 168760;
 
 constexpr uint16_t FX_SAVE_PAGE  = 0xfff0;
 constexpr uint24_t FX_SAVE_BYTES = 2;
@@ -56,30 +56,38 @@ namespace Levels
   constexpr uint24_t Puzzle_16 = 0x0189F9;
   constexpr uint24_t Puzzle_17 = 0x018A1D;
   constexpr uint24_t Puzzle_18 = 0x018A44;
-  constexpr uint24_t Puzzles = 0x018A62;
+  constexpr uint24_t Puzzle_19 = 0x018A62;
+  constexpr uint24_t Puzzle_20 = 0x018A7D;
+  constexpr uint24_t Puzzle_21 = 0x018A9E;
+  constexpr uint24_t Puzzle_22 = 0x018AB6;
+  constexpr uint24_t Puzzle_23 = 0x018ADD;
+  constexpr uint24_t Puzzle_24 = 0x018AFE;
+  constexpr uint24_t Puzzle_25 = 0x018B1F;
+  constexpr uint24_t Puzzle_26 = 0x018B49;
+  constexpr uint24_t Puzzles = 0x018B70;
 }
 
 namespace Images
 {
-  constexpr uint24_t PPOT = 0x018A98;
-  constexpr uint24_t Sound_Volume_Grey = 0x01BA9A;
-  constexpr uint24_t Sound_Volume_White = 0x01C2DC;
-  constexpr uint24_t Sound_Checkbox = 0x01CB1E;
-  constexpr uint24_t Title = 0x01CB2C;
-  constexpr uint24_t HUD_Top = 0x020EAE;
-  constexpr uint24_t HUD_Bottom = 0x021DC8;
-  constexpr uint24_t FreeTheKey = 0x02346E;
-  constexpr uint24_t Background = 0x024070;
-  constexpr uint24_t Menu = 0x024C72;
-  constexpr uint24_t Block_12 = 0x02591C;
-  constexpr uint24_t Block_13 = 0x025A62;
-  constexpr uint24_t Block_21 = 0x025C14;
-  constexpr uint24_t Block_31 = 0x025DDE;
-  constexpr uint24_t Key = 0x026098;
-  constexpr uint24_t Cursor = 0x026262;
-  constexpr uint24_t Levels = 0x02633C;
-  constexpr uint24_t Levels_Cursor = 0x0288BE;
-  constexpr uint24_t Numbers_5x3_1D_MB = 0x028980;
-  constexpr uint24_t Numbers_5x3_2D_MB = 0x0289DC;
+  constexpr uint24_t PPOT = 0x018BBE;
+  constexpr uint24_t Sound_Volume_Grey = 0x01BBC0;
+  constexpr uint24_t Sound_Volume_White = 0x01C402;
+  constexpr uint24_t Sound_Checkbox = 0x01CC44;
+  constexpr uint24_t Title = 0x01CC52;
+  constexpr uint24_t HUD_Top = 0x020FD4;
+  constexpr uint24_t HUD_Bottom = 0x021EEE;
+  constexpr uint24_t FreeTheKey = 0x023594;
+  constexpr uint24_t Background = 0x024196;
+  constexpr uint24_t Menu = 0x024D98;
+  constexpr uint24_t Block_12 = 0x025A42;
+  constexpr uint24_t Block_13 = 0x025B88;
+  constexpr uint24_t Block_21 = 0x025D3A;
+  constexpr uint24_t Block_31 = 0x025F04;
+  constexpr uint24_t Key = 0x0261BE;
+  constexpr uint24_t Cursor = 0x026388;
+  constexpr uint24_t Levels = 0x026462;
+  constexpr uint24_t Levels_Cursor = 0x0289E4;
+  constexpr uint24_t Numbers_5x3_1D_MB = 0x028AA6;
+  constexpr uint24_t Numbers_5x3_2D_MB = 0x028B02;
 }
 
