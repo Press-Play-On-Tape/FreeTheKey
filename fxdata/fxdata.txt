@@ -25,47 +25,294 @@ namespace Music {
 };
 namespace_end   
 
-namespace Constants
+namespace Levels
 
-    uint16_t Starting_Bids[] = {
-        5000,
-        2000,
-        1000
+    uint8_t Puzzle_01[] = {
+        1, 2, 1, // BlockType::Key
+        0, 0, 4, // BlockType::Block_21
+        5, 0, 3, // BlockType::Block_13
+        0, 1, 3, // BlockType::Block_13
+        3, 1, 3, // BlockType::Block_13
+        0, 4, 2, // BlockType::Block_12
+        4, 4, 4, // BlockType::Block_21
+        2, 5, 5, // BlockType::Block_31
+        0, 0, 0, // BlockType::None
+    };
+    
+    uint8_t Puzzle_02[] = {
+        0, 2, 1, // BlockType::Key
+        0, 0, 2, // BlockType::Block_12
+        3, 0, 5, // BlockType::Block_31
+        3, 1, 2, // BlockType::Block_12
+        5, 1, 3, // BlockType::Block_13
+        4, 2, 2, // BlockType::Block_12
+        0, 3, 5, // BlockType::Block_31
+        2, 4, 2, // BlockType::Block_12
+        4, 4, 4, // BlockType::Block_21
+        0, 5, 4, // BlockType::Block_21
+        3, 5, 4, // BlockType::Block_21
+        0, 0, 0, // BlockType::None
     };
 
-    uint8_t Score_Panel_XTextPos[] = {
-        46,
-        46,
-        44,
-        42,
-        42,
-        38,
+    uint8_t Puzzle_03[] = {
+        1, 2, 1, // BlockType::Key
+        3, 2, 3, // BlockType::Block_13
+        1, 3, 4, // BlockType::Block_21
+        5, 3, 3, // BlockType::Block_13
+        1, 4, 2, // BlockType::Block_12
+        2, 5, 4, // BlockType::Block_21
+        0, 0, 0, // BlockType::None
     };
 
-    uint8_t Score_Panel_XPanelPos[] = {
-        41,
-        41,
-        41,
-        39,
-        39,
-        35,
+    uint8_t Puzzle_04[] = {
+        1, 2, 1, // BlockType::Key
+        0, 0, 3, // BlockType::Block_13
+        3, 0, 3, // BlockType::Block_13
+        2, 3, 2, // BlockType::Block_12
+        3, 3, 5, // BlockType::Block_31
+        5, 4, 2, // BlockType::Block_12
+        2, 5, 5, // BlockType::Block_31
+        0, 0, 0, // BlockType::None
     };
 
-    uint8_t Score_Panel_Idx[] = {
-        0,
-        0,
-        0,
-        3,
-        6,
-        9,
+    uint8_t Puzzle_05[] = {
+        1, 2, 1, // BlockType::Key
+        0, 0, 4, // BlockType::Block_21
+        3, 0, 3, // BlockType::Block_13
+        5, 0, 2, // BlockType::Block_12
+        0, 1, 3, // BlockType::Block_13
+        4, 1, 3, // BlockType::Block_13
+        5, 2, 2, // BlockType::Block_12
+        1, 3, 5, // BlockType::Block_31
+        0, 4, 2, // BlockType::Block_12
+        4, 4, 4, // BlockType::Block_21
+        4, 5, 4, // BlockType::Block_21
+        0, 0, 0, // BlockType::None
     };
+
+    uint8_t Puzzle_06[] = {
+        1, 2, 1, // BlockType::Key
+        0, 0, 4, // BlockType::Block_21
+        3, 0, 2, // BlockType::Block_12
+        0, 1, 4, // BlockType::Block_21
+        4, 1, 3, // BlockType::Block_13
+        5, 1, 3, // BlockType::Block_13
+        3, 2, 3, // BlockType::Block_13
+        0, 3, 4, // BlockType::Block_21
+        2, 3, 2, // BlockType::Block_12
+        0, 4, 2, // BlockType::Block_12
+        3, 5, 5, // BlockType::Block_31
+        0, 0, 0, // BlockType::None
+    };
+
+    uint8_t Puzzle_07[] = {
+        1, 2, 1, // BlockType::Key
+        1, 0, 2, // BlockType::Block_12
+        2, 0, 4, // BlockType::Block_21
+        4, 0, 2, // BlockType::Block_12
+        5, 0, 2, // BlockType::Block_12
+        3, 1, 2, // BlockType::Block_12
+        5, 2, 2, // BlockType::Block_12
+        2, 3, 4, // BlockType::Block_21
+        3, 4, 2, // BlockType::Block_12
+        0, 0, 0, // BlockType::None
+    };
+
+    uint8_t Puzzle_08[] = {
+        0, 2, 1, // BlockType::Key
+        3, 0, 4, // BlockType::Block_21
+        5, 0, 3, // BlockType::Block_13
+        2, 1, 4, // BlockType::Block_21
+        4, 1, 2, // BlockType::Block_12
+        2, 2, 2, // BlockType::Block_12
+        3, 2, 2, // BlockType::Block_12
+        0, 3, 4, // BlockType::Block_21
+        4, 3, 4, // BlockType::Block_21
+        0, 4, 4, // BlockType::Block_21
+        2, 4, 2, // BlockType::Block_12
+        3, 4, 5, // BlockType::Block_31
+        0, 5, 4, // BlockType::Block_21
+        3, 5, 5, // BlockType::Block_31
+        0, 0, 0, // BlockType::None
+    };
+
+    uint8_t Puzzle_09[] = {
+        0, 2, 1, // BlockType::Key
+        1, 0, 2, // BlockType::Block_12
+        2, 0, 4, // BlockType::Block_21
+        4, 0, 4, // BlockType::Block_21
+        3, 1, 2, // BlockType::Block_12
+        4, 1, 4, // BlockType::Block_21
+        4, 2, 3, // BlockType::Block_13
+        5, 2, 2, // BlockType::Block_12
+        0, 3, 3, // BlockType::Block_13
+        1, 3, 5, // BlockType::Block_31
+        2, 4, 2, // BlockType::Block_12
+        5, 4, 2, // BlockType::Block_12
+        0, 0, 0, // BlockType::None
+    };
+
+    uint8_t Puzzle_10[] = {
+        1, 2, 1, // BlockType::Key
+        0, 0, 4, // BlockType::Block_21
+        2, 0, 2, // BlockType::Block_12
+        4, 0, 4, // BlockType::Block_21
+        0, 1, 4, // BlockType::Block_21
+        4, 1, 4, // BlockType::Block_21
+        0, 2, 3, // BlockType::Block_13
+        5, 2, 3, // BlockType::Block_13
+        1, 3, 5, // BlockType::Block_31
+        3, 4, 2, // BlockType::Block_12
+        0, 5, 4, // BlockType::Block_21
+        4, 5, 4, // BlockType::Block_21
+        0, 0, 0, // BlockType::None
+    };
+
+    uint8_t Puzzle_11[] = {
+        1, 2, 1, // BlockType::Key
+        0, 0, 3, // BlockType::Block_13
+        1, 0, 4, // BlockType::Block_21
+        3, 0, 3, // BlockType::Block_13
+        2, 3, 2, // BlockType::Block_12
+        3, 3, 5, // BlockType::Block_31
+        5, 4, 2, // BlockType::Block_12
+        2, 5, 5, // BlockType::Block_31
+        0, 0, 0, // BlockType::None
+    };
+
+    uint8_t Puzzle_12[] = {
+        0, 2, 1, // BlockType::Key
+        0, 0, 2, // BlockType::Block_12
+        1, 0, 4, // BlockType::Block_21
+        5, 0, 3, // BlockType::Block_13
+        2, 1, 3, // BlockType::Block_13
+        3, 3, 5, // BlockType::Block_31
+        4, 4, 2, // BlockType::Block_12
+        0, 5, 5, // BlockType::Block_31
+        0, 0, 0, // BlockType::None
+    };
+
+    uint8_t Puzzle_13[] = {
+        3, 2, 1, // BlockType::Key
+        0, 0, 4, // BlockType::Block_21
+        2, 0, 4, // BlockType::Block_21
+        4, 0, 2, // BlockType::Block_12
+        2, 1, 2, // BlockType::Block_12
+        5, 1, 3, // BlockType::Block_13
+        1, 2, 2, // BlockType::Block_12
+        0, 3, 3, // BlockType::Block_13
+        3, 3, 4, // BlockType::Block_21
+        3, 4, 2, // BlockType::Block_12
+        4, 4, 4, // BlockType::Block_21
+        1, 5, 4, // BlockType::Block_21
+        4, 5, 4, // BlockType::Block_21
+        0, 0, 0, // BlockType::None
+    };
+
+    uint8_t Puzzle_14[] = {
+        2, 2, 1, // BlockType::Key
+        0, 0, 4, // BlockType::Block_21
+        2, 0, 2, // BlockType::Block_12
+        4, 1, 4, // BlockType::Block_21
+        4, 2, 2, // BlockType::Block_12
+        5, 2, 2, // BlockType::Block_12
+        0, 3, 2, // BlockType::Block_12
+        1, 3, 2, // BlockType::Block_12
+        2, 3, 4, // BlockType::Block_21
+        2, 4, 2, // BlockType::Block_12
+        4, 4, 4, // BlockType::Block_21
+        0, 5, 4, // BlockType::Block_21
+        0, 0, 0, // BlockType::None
+    };
+
+    uint8_t Puzzle_15[] = {
+        2, 2, 1, // BlockType::Key
+        1, 0, 4, // BlockType::Block_21
+        3, 0, 4, // BlockType::Block_21
+        0, 1, 4, // BlockType::Block_21
+        2, 1, 4, // BlockType::Block_21
+        4, 1, 3, // BlockType::Block_13
+        5, 1, 3, // BlockType::Block_13
+        0, 2, 3, // BlockType::Block_13
+        1, 2, 3, // BlockType::Block_13
+        2, 3, 2, // BlockType::Block_12
+        3, 3, 2, // BlockType::Block_12
+        4, 4, 4, // BlockType::Block_21
+        1, 5, 4, // BlockType::Block_21
+        3, 5, 4, // BlockType::Block_21
+        0, 0, 0, // BlockType::None
+    };
+
+    uint8_t Puzzle_16[] = {
+        3, 2, 1, // BlockType::Key
+        0, 0, 4, // BlockType::Block_21
+        2, 0, 4, // BlockType::Block_21
+        4, 0, 2, // BlockType::Block_12
+        5, 0, 3, // BlockType::Block_13
+        0, 1, 2, // BlockType::Block_12
+        2, 1, 4, // BlockType::Block_21
+        1, 2, 2, // BlockType::Block_12
+        2, 2, 3, // BlockType::Block_13
+        3, 3, 5, // BlockType::Block_31
+        0, 5, 4, // BlockType::Block_21
+        0, 0, 0, // BlockType::None
+    };
+
+    uint8_t Puzzle_17[] = {
+        0, 2, 1, // BlockType::Key
+        0, 0, 2, // BlockType::Block_12
+        1, 0, 5, // BlockType::Block_31
+        1, 1, 4, // BlockType::Block_21
+        4, 1, 4, // BlockType::Block_21
+        2, 2, 2, // BlockType::Block_12
+        0, 3, 4, // BlockType::Block_21
+        3, 3, 3, // BlockType::Block_13
+        0, 4, 5, // BlockType::Block_31
+        4, 4, 2, // BlockType::Block_12
+        5, 4, 2, // BlockType::Block_12
+        0, 5, 5, // BlockType::Block_31
+        0, 0, 0, // BlockType::None
+    };
+
+    uint8_t Puzzle_18[] = {
+        1, 2, 1, // BlockType::Key
+        0, 0, 4, // BlockType::Block_21
+        2, 0, 2, // BlockType::Block_12
+        3, 0, 3, // BlockType::Block_13
+        0, 1, 4, // BlockType::Block_21
+        0, 2, 3, // BlockType::Block_13
+        1, 3, 5, // BlockType::Block_31
+        1, 4, 4, // BlockType::Block_21
+        0, 5, 5, // BlockType::Block_31
+        0, 0, 0, // BlockType::None
+    };
+
+    uint24_t Puzzles[] = {
+        Puzzle_01,
+        Puzzle_02,
+        Puzzle_03,
+        Puzzle_04,
+        Puzzle_05,
+        Puzzle_06,
+        Puzzle_07,
+        Puzzle_08,
+        Puzzle_09,
+        Puzzle_10,
+        Puzzle_11,
+        Puzzle_12,
+        Puzzle_13,
+        Puzzle_14,
+        Puzzle_15,
+        Puzzle_16,
+        Puzzle_17,
+        Puzzle_18,
+    }
 
 namespace_end 
 
 namespace Images
 
     include "images/Images.hpp"
-
 
 namespace_end
 

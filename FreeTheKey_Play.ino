@@ -3,16 +3,25 @@
 void play_Init() { 
 
     game.reset();
+    uint8_t ind = 0;
 
-    game.setBlock(0, 1, 2, BlockType::Key);
-    game.setBlock(1, 0, 0, BlockType::Block_21);
-    game.setBlock(2, 5, 0, BlockType::Block_13);
-    game.setBlock(3, 0, 1, BlockType::Block_13);
-    game.setBlock(4, 3, 1, BlockType::Block_13);
-    game.setBlock(5, 0, 4, BlockType::Block_12);
-    game.setBlock(6, 4, 4, BlockType::Block_21);
-    game.setBlock(7, 2, 5, BlockType::Block_31);
-    game.setBlock(8, 0, 0, BlockType::None);
+    uint24_t puzzleStart = FX::readIndexedUInt24(Levels::Puzzles, game.getLevel());
+
+    while (true) {
+
+        uint8_t x = FX::readIndexedUInt8(puzzleStart, (ind * 3));         
+        uint8_t y = FX::readIndexedUInt8(puzzleStart, (ind * 3) + 1);         
+        uint8_t type = FX::readIndexedUInt8(puzzleStart, (ind * 3) + 2);  
+
+        game.setBlock(ind, x, y, static_cast<BlockType>(type));
+
+        if (game.getBlock(ind).getBlockType() == BlockType::None) {
+            break;
+        }
+
+        ind++;
+
+    }
 
     gameState = GameState::Play;
 
@@ -309,7 +318,7 @@ void play_Update() {
                     
                 }
 
-                else if (justPressed & UP_BUTTON) {
+                else if (justPressed & UP_BUTTON && game.getPlayer().getX() < 6) {
 
                     switch (block.getBlockType()) {
                                 
@@ -336,7 +345,7 @@ void play_Update() {
                     
                 }
 
-                else if (justPressed & DOWN_BUTTON) {
+                else if (justPressed & DOWN_BUTTON && game.getPlayer().getX() < 6) {
 
                     switch (block.getBlockType()) {
                                 
@@ -405,6 +414,27 @@ void play_Update() {
 
     }
 
+
+    // Game over?
+
+    if (game.getPlayer().getX() > 5) {
+        
+        game.getPuzzle(game.getLevel()).setStatus(PuzzleStatus::Complete);
+        game.getPuzzle(game.getLevel()).setNumberOfMoves(game.getMoveCount());
+        
+        if (game.getLevel() < 39 && game.getPuzzle(game.getLevel() + 1).getStatus() == PuzzleStatus::Locked) {
+            game.getPuzzle(game.getLevel() + 1).setStatus(PuzzleStatus::InProgress);
+            game.setLevel(game.getLevel() + 1);
+            gameState = GameState::Play_Init;
+        }
+        else {
+            gameState = GameState::Title_Select;
+        }
+
+        saveCookie();
+
+    }
+    
 }
 
 
@@ -431,9 +461,7 @@ void play(ArduboyGBase_Config<ABG_Mode::L4_Triplane> &a) {
     SpritesU::drawOverwriteFX(113, 8, Images::Numbers_5x3_2D_MB, ((game.getMoveCount() % 100) * 3) + currentPlane);
 
 
-
     uint8_t selectedBlock = game.getBlock_Idx(game.getPlayer().getX(), game.getPlayer().getY());
-
 
     for (uint8_t i = 0; i < Constants::Block_Count; i++) {
 

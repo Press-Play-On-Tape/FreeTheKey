@@ -10,6 +10,8 @@
 #include "src/utils/Constants.h"
 #include "src/utils/Utils.h"
 #include "src/entities/Game.h"
+#include "src/entities/SoundSettings.h"
+#include "src/entities/Cookie.h"
 #include "fxdata/fxdata.h"
 #include "fxdata/images/Images.h"
 #include "src/utils/Random.h"
@@ -28,7 +30,9 @@ decltype(a) a;
 #include <stdlib.h>
 #include "time.h"
 
-Game game;
+Cookie cookie;
+Game &game = cookie.game;
+SoundSettings &soundSettings = cookie.soundSettings;
 
 #if not defined(DEBUG) && not defined(DEBUG_BASIC)
 GameState gameState = GameState::SplashScreen_Start;
@@ -50,22 +54,24 @@ void setup() {
 
     game.setFrameCount(0);
 
-    game.getPuzzle(0).setStatus(PuzzleStatus::Complete);
-    game.getPuzzle(1).setStatus(PuzzleStatus::Complete);
-    game.getPuzzle(2).setStatus(PuzzleStatus::Complete);
-    game.getPuzzle(3).setStatus(PuzzleStatus::Complete);
-    game.getPuzzle(4).setStatus(PuzzleStatus::Complete);
-    game.getPuzzle(5).setStatus(PuzzleStatus::Complete);
-    game.getPuzzle(6).setStatus(PuzzleStatus::Complete);
-    game.getPuzzle(7).setStatus(PuzzleStatus::Complete);
-    game.getPuzzle(8).setStatus(PuzzleStatus::Complete);
-    game.getPuzzle(9).setStatus(PuzzleStatus::Complete);
-    game.getPuzzle(10).setStatus(PuzzleStatus::Complete);
-    game.getPuzzle(11).setStatus(PuzzleStatus::InProgress);
+    // game.getPuzzle(0).setStatus(PuzzleStatus::Complete);
+    // game.getPuzzle(1).setStatus(PuzzleStatus::Complete);
+    // game.getPuzzle(2).setStatus(PuzzleStatus::Complete);
+    // game.getPuzzle(3).setStatus(PuzzleStatus::Complete);
+    // game.getPuzzle(4).setStatus(PuzzleStatus::Complete);
+    // game.getPuzzle(5).setStatus(PuzzleStatus::Complete);
+    // game.getPuzzle(6).setStatus(PuzzleStatus::Complete);
+    // game.getPuzzle(7).setStatus(PuzzleStatus::Complete);
+    // game.getPuzzle(8).setStatus(PuzzleStatus::Complete);
+    // game.getPuzzle(9).setStatus(PuzzleStatus::Complete);
+    // game.getPuzzle(10).setStatus(PuzzleStatus::Complete);
+    // game.getPuzzle(11).setStatus(PuzzleStatus::InProgress);
 
-    // for (uint8_t i = 0; i < 40; i++) {
-    // game.getPuzzle(i).setComplete(true);
-    // }
+    game.getPuzzle(0).setStatus(PuzzleStatus::InProgress);
+
+    for (uint8_t i = 0; i < 40; i++) {
+    game.getPuzzle(i).setStatus(PuzzleStatus::Complete);
+    }
 
 }
 

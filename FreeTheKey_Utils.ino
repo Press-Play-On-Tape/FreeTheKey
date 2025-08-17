@@ -22,3 +22,8 @@ uint8_t getPressedButtons() {
 
 }
 
+void saveCookie() {
+
+    FX::saveGameState(cookie);
+
+}
