@@ -243,7 +243,7 @@ void play_Update() {
                 break;
 
             case GameState::Play_Menu_MainMenu:
-                gameState = GameState::Title_Init;
+                gameState = GameState::Title_Select;
                 break;
 
         }

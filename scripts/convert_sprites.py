@@ -132,6 +132,12 @@ convert_header(IMAGES + 'Key.png',                                              
 convert_header(IMAGES + 'Cursor.png',                                                           BASE + 'Images.hpp', 'Cursor', 4, 9, 16)
 convert_header(IMAGES + 'Levels.png',                                                           BASE + 'Images.hpp', 'Levels', 4, 16, 16)
 convert_header(IMAGES + 'Levels_Cursor.png',                                                    BASE + 'Images.hpp', 'Levels_Cursor', 4)
+convert_header(IMAGES + 'Levels_HUD.png',                                                       BASE + 'Images.hpp', 'Levels_HUD', 4, 53, 64)
+convert_header(IMAGES + 'Levels_Status.png',                                                    BASE + 'Images.hpp', 'Levels_Status', 4, 43, 8)
+convert_header(IMAGES + 'Levels_Number.png',                                                    BASE + 'Images.hpp', 'Levels_Number', 4, 11, 8)
+convert_header(IMAGES + 'Levels_NumberOfMoves.png',                                             BASE + 'Images.hpp', 'Levels_NumberOfMoves', 4)
+convert_header(IMAGES + 'Levels_NumberOfMoves_Numbers.png',                                     BASE + 'Images.hpp', 'Levels_NumberOfMoves_Numbers', 4, 5, 8)
+
 convert_header(IMAGES + 'Numbers/Numbers_5x3_1D_MB.png',                                        BASE + 'Images.hpp', 'Numbers_5x3_1D_MB', 4, 3, 8)
 convert_header(IMAGES + 'Numbers/Numbers_5x3_2D_MB.png',                                        BASE + 'Images.hpp', 'Numbers_5x3_2D_MB', 4, 7, 8)
 

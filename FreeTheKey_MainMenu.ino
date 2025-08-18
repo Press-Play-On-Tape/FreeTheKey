@@ -44,6 +44,10 @@ void title_Update() {
 
         case GameState::Title_Select:
 
+            if (justPressed & B_BUTTON) {
+                gameState = GameState::Title_Main;
+            }
+
             if (justPressed & A_BUTTON) {
                 game.setLevel(selectedPuzzle);
                 gameState = GameState::Play_Init;
@@ -113,7 +117,7 @@ void title(ArduboyGBase_Config<ABG_Mode::L4_Triplane> &a) {
                     }                        
                     else {
 
-                        SpritesU::drawOverwriteFX(x * 15, (y * 15) - yOffset, Images::Levels, (41 * 3) + currentPlane);
+                        SpritesU::drawOverwriteFX(x * 15, (y * 15) - yOffset, Images::Levels, (91 * 3) + currentPlane);
 
                     }
 
@@ -127,6 +131,19 @@ void title(ArduboyGBase_Config<ABG_Mode::L4_Triplane> &a) {
 
                 }
                 
+            }
+
+            SpritesU::drawOverwriteFX(128 - 53, 0, Images::Levels_HUD, (selectedPuzzleY * 3) + currentPlane);
+            SpritesU::drawOverwriteFX(128 - 53 + 40, 2, Images::Levels_Number, (selectedPuzzle * 3) + currentPlane);
+            SpritesU::drawOverwriteFX(128 - 53 + 9, 15, Images::Levels_Status, (static_cast<uint8_t>(game.getPuzzle(selectedPuzzle).getStatus()) * 3) + currentPlane);
+
+            if (game.getPuzzle(selectedPuzzle).getStatus() == PuzzleStatus::Complete) {
+                SpritesU::drawOverwriteFX(128 - 53 + 7, 28, Images::Levels_NumberOfMoves, currentPlane);
+                
+                SpritesU::drawOverwriteFX(113, 37, Images::Levels_NumberOfMoves_Numbers, ((game.getPuzzle(selectedPuzzle).getNumberOfMoves() / 100) * 3) + currentPlane);
+                SpritesU::drawOverwriteFX(118, 37, Images::Levels_NumberOfMoves_Numbers, (((game.getPuzzle(selectedPuzzle).getNumberOfMoves() % 100) / 10) * 3) + currentPlane);
+                SpritesU::drawOverwriteFX(123, 37, Images::Levels_NumberOfMoves_Numbers, (((game.getPuzzle(selectedPuzzle).getNumberOfMoves() % 100) % 10) * 3) + currentPlane);
+
             }
 
             break;
