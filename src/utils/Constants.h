@@ -13,7 +13,7 @@
 
 namespace Constants {
 
-    constexpr uint8_t levelSelect_Offset[] = { 0, 0, 6, 21, 36, 42, 57, 57};
+    constexpr uint8_t levelSelect_Offset[] = { 0, 2, 6, 21, 36, 42, 54, 55};
 
     constexpr uint8_t Level_Count = 40;
     constexpr uint8_t Block_Count = 25;
@@ -21,7 +21,7 @@ namespace Constants {
     constexpr uint8_t NoBlock = Block_Count - 1;
 
     constexpr uint8_t Grid_Size = 10;
-    constexpr uint8_t Grid_Left = 7;
-    constexpr uint8_t Grid_Top = 2;
+    constexpr uint8_t Grid_Left = 6;
+    constexpr uint8_t Grid_Top = 1;
 
 };

@@ -133,7 +133,7 @@ void title(ArduboyGBase_Config<ABG_Mode::L4_Triplane> &a) {
                 
             }
 
-            SpritesU::drawOverwriteFX(128 - 53, 0, Images::Levels_HUD, (selectedPuzzleY * 3) + currentPlane);
+            SpritesU::drawOverwriteFX(128 - 53, 0, Images::Levels_HUD, ((blackAndWhite ? 8 : 0) * 3) + (selectedPuzzleY * 3) + currentPlane);
             SpritesU::drawOverwriteFX(128 - 53 + 40, 2, Images::Levels_Number, (selectedPuzzle * 3) + currentPlane);
             SpritesU::drawOverwriteFX(128 - 53 + 9, 15, Images::Levels_Status, (static_cast<uint8_t>(game.getPuzzle(selectedPuzzle).getStatus()) * 3) + currentPlane);
 

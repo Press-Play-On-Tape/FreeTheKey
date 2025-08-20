@@ -401,6 +401,20 @@ namespace Levels
         0, 0, 0, // BlockType::None
     };
 
+    uint8_t Puzzle_27[] = {
+        0, 2, 1, // BlockType::Key
+        0, 0, 2, // BlockType::Block_12
+        1, 0, 4, // BlockType::Block_21
+        3, 0, 3, // BlockType::Block_13
+        1, 1, 4, // BlockType::Block_21
+        2, 2, 2, // BlockType::Block_12
+        5, 2, 3, // BlockType::Block_13
+        3, 3, 4, // BlockType::Block_21
+        2, 4, 2, // BlockType::Block_12
+        3, 5, 5, // BlockType::Block_31
+        0, 0, 0, // BlockType::None
+    };
+
     uint24_t Puzzles[] = {
         Puzzle_01,
         Puzzle_02,
@@ -428,6 +442,7 @@ namespace Levels
         Puzzle_24,
         Puzzle_25,
         Puzzle_26,
+        Puzzle_27,
     }
 
 namespace_end 

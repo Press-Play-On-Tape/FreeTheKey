@@ -443,10 +443,11 @@ void play(ArduboyGBase_Config<ABG_Mode::L4_Triplane> &a) {
     uint8_t currentPlane = a.currentPlane();
     if (a.needsUpdate()) play_Update();
 
-    SpritesU::drawOverwriteFX(0, 0, Images::Background, currentPlane);
+    SpritesU::drawOverwriteFX(0, 0, Images::Background, (blackAndWhite ? 3 : 0) + currentPlane);
 
     uint8_t menu_Idx = gameState == GameState::Play_Init ? 0 : static_cast<uint8_t>(gameState) - static_cast<uint8_t>(GameState::Play);
     if (game.getUndoCount() > 0) menu_Idx = menu_Idx + 4;
+    if (blackAndWhite) menu_Idx = menu_Idx + 8;
     SpritesU::drawOverwriteFX(83, 38, Images::Menu, (menu_Idx * 3) + currentPlane);
 
 
@@ -466,6 +467,7 @@ void play(ArduboyGBase_Config<ABG_Mode::L4_Triplane> &a) {
     for (uint8_t i = 0; i < Constants::Block_Count; i++) {
 
         uint8_t idx = (i == selectedBlock ? game.getFrameCount(48) * 3 : 0);
+        idx = idx + (blackAndWhite ? 6 : 0);
 
         Block &block = game.getBlock(i);
 
@@ -475,7 +477,7 @@ void play(ArduboyGBase_Config<ABG_Mode::L4_Triplane> &a) {
                 break;
 
             case BlockType::Key:
-                SpritesU::drawPlusMaskFX(Constants::Grid_Left +  (Constants::Grid_Size * block.getX()),  Constants::Grid_Top + (Constants::Grid_Size * block.getY()), Images::Key, idx + currentPlane);
+                SpritesU::drawPlusMaskFX(Constants::Grid_Left + (Constants::Grid_Size * block.getX()),  Constants::Grid_Top + (Constants::Grid_Size * block.getY()), Images::Key, idx + currentPlane);
                 break;
 
             case BlockType::Block_21:
@@ -501,6 +503,7 @@ void play(ArduboyGBase_Config<ABG_Mode::L4_Triplane> &a) {
     if (selectedBlock == Constants::NoBlock) {
 
         uint8_t idx = game.getFrameCount(48) * 3;
+        idx = idx + (blackAndWhite ? 6 : 0);        
         SpritesU::drawPlusMaskFX(Constants::Grid_Left +  (Constants::Grid_Size * game.getPlayer().getX()),  Constants::Grid_Top + (Constants::Grid_Size * game.getPlayer().getY()), Images::Cursor, idx + currentPlane);
 
     }
