@@ -94,7 +94,7 @@ void title(ArduboyGBase_Config<ABG_Mode::L4_Triplane> &a) {
 
         case GameState::Title_Main:
             
-            SpritesU::drawOverwriteFX(0, 0, Images::FreeTheKey, currentPlane);
+            SpritesU::drawOverwriteFX(0, 0, Images::FreeTheKey, (blackAndWhite ? 3 : 0) + currentPlane);
             break;
 
         case GameState::Title_Select:

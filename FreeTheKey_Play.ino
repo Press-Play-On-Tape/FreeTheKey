@@ -453,13 +453,13 @@ void play(ArduboyGBase_Config<ABG_Mode::L4_Triplane> &a) {
 
     // Level ..
 
-    SpritesU::drawOverwriteFX(113, 0, Images::Numbers_5x3_2D_MB, ((game.getLevel() + 1) * 3) + currentPlane);
+    SpritesU::drawOverwriteFX(113, 0, Images::Numbers_5x3_2D_MB, (blackAndWhite ? 300 : 0) + ((game.getLevel() + 1) * 3) + currentPlane);
 
 
     // Moves ..
 
-    SpritesU::drawOverwriteFX(109, 8, Images::Numbers_5x3_1D_MB, ((game.getMoveCount() / 100) * 3) + currentPlane);
-    SpritesU::drawOverwriteFX(113, 8, Images::Numbers_5x3_2D_MB, ((game.getMoveCount() % 100) * 3) + currentPlane);
+    SpritesU::drawOverwriteFX(109, 8, Images::Numbers_5x3_1D_MB, (blackAndWhite ? 30 : 0) + ((game.getMoveCount() / 100) * 3) + currentPlane);
+    SpritesU::drawOverwriteFX(113, 8, Images::Numbers_5x3_2D_MB, (blackAndWhite ? 300 : 0) + ((game.getMoveCount() % 100) * 3) + currentPlane);
 
 
     uint8_t selectedBlock = game.getBlock_Idx(game.getPlayer().getX(), game.getPlayer().getY());

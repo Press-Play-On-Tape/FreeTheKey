@@ -6,8 +6,8 @@ using uint24_t = __uint24;
 
 // Initialize FX hardware using  FX::begin(FX_DATA_PAGE); in the setup() function.
 
-constexpr uint16_t FX_DATA_PAGE  = 0xfcde;
-constexpr uint24_t FX_DATA_BYTES = 201095;
+constexpr uint16_t FX_DATA_PAGE  = 0xfd5a;
+constexpr uint24_t FX_DATA_BYTES = 169280;
 
 constexpr uint16_t FX_SAVE_PAGE  = 0xfff0;
 constexpr uint24_t FX_SAVE_BYTES = 2;
@@ -65,35 +65,33 @@ namespace Levels
   constexpr uint24_t Puzzle_25 = 0x018B1F;
   constexpr uint24_t Puzzle_26 = 0x018B49;
   constexpr uint24_t Puzzle_27 = 0x018B70;
-  constexpr uint24_t Puzzles = 0x018B91;
+  constexpr uint24_t Puzzle_28 = 0x018B91;
+  constexpr uint24_t Puzzle_29 = 0x018BB8;
+  constexpr uint24_t Puzzle_30 = 0x018BDF;
+  constexpr uint24_t Puzzle_31 = 0x018C00;
+  constexpr uint24_t Puzzles = 0x018C24;
 }
 
 namespace Images
 {
-  constexpr uint24_t PPOT = 0x018BE2;
-  constexpr uint24_t Sound_Volume_Grey = 0x01BBE4;
-  constexpr uint24_t Sound_Volume_White = 0x01C426;
-  constexpr uint24_t Sound_Checkbox = 0x01CC68;
-  constexpr uint24_t Title = 0x01CC76;
-  constexpr uint24_t HUD_Top = 0x020FF8;
-  constexpr uint24_t HUD_Bottom = 0x021F12;
-  constexpr uint24_t FreeTheKey = 0x0235B8;
-  constexpr uint24_t Background = 0x0241BA;
-  constexpr uint24_t Menu = 0x0259BC;
-  constexpr uint24_t Block_12 = 0x02730E;
-  constexpr uint24_t Block_13 = 0x027628;
-  constexpr uint24_t Block_21 = 0x027A4A;
-  constexpr uint24_t Block_31 = 0x027E3C;
-  constexpr uint24_t Key = 0x02840E;
-  constexpr uint24_t Cursor = 0x028800;
-  constexpr uint24_t Levels = 0x028A12;
-  constexpr uint24_t Levels_Cursor = 0x02AF94;
-  constexpr uint24_t Levels_HUD = 0x02B116;
-  constexpr uint24_t Levels_Status = 0x030098;
-  constexpr uint24_t Levels_Number = 0x03021D;
-  constexpr uint24_t Levels_NumberOfMoves = 0x030747;
-  constexpr uint24_t Levels_NumberOfMoves_Numbers = 0x03085D;
-  constexpr uint24_t Numbers_5x3_1D_MB = 0x0308F5;
-  constexpr uint24_t Numbers_5x3_2D_MB = 0x030951;
+  constexpr uint24_t PPOT = 0x018C81;
+  constexpr uint24_t FreeTheKey = 0x01A4E3;
+  constexpr uint24_t Background = 0x01BCE5;
+  constexpr uint24_t Menu = 0x01D4E7;
+  constexpr uint24_t Block_12 = 0x01EE39;
+  constexpr uint24_t Block_13 = 0x01F153;
+  constexpr uint24_t Block_21 = 0x01F575;
+  constexpr uint24_t Block_31 = 0x01F967;
+  constexpr uint24_t Key = 0x01FF39;
+  constexpr uint24_t Cursor = 0x02032B;
+  constexpr uint24_t Levels = 0x02053D;
+  constexpr uint24_t Levels_Cursor = 0x022ABF;
+  constexpr uint24_t Levels_HUD = 0x022C41;
+  constexpr uint24_t Levels_Status = 0x027BC3;
+  constexpr uint24_t Levels_Number = 0x027D48;
+  constexpr uint24_t Levels_NumberOfMoves = 0x028272;
+  constexpr uint24_t Levels_NumberOfMoves_Numbers = 0x028388;
+  constexpr uint24_t Numbers_5x3_1D_MB = 0x028420;
+  constexpr uint24_t Numbers_5x3_2D_MB = 0x0284D6;
 }
 

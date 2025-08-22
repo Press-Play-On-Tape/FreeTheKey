@@ -111,15 +111,7 @@ IMAGES = '../images/'
 
 deleteFile(BASE + 'Images.hpp')
 
-convert_header(IMAGES + 'Titles/PPOT.png',                                                     BASE + 'Images.hpp', 'PPOT', 4, 128, 64)
-convert_header(IMAGES + 'Titles/Sound_Volume_Grey.png',                                        BASE + 'Images.hpp', 'Sound_Volume_Grey', 4, 22, 16)
-convert_header(IMAGES + 'Titles/Sound_Volume_White.png',                                       BASE + 'Images.hpp', 'Sound_Volume_White', 4, 22, 16)
-convert_header(IMAGES + 'Titles/Sound_Checkbox.png',                                           BASE + 'Images.hpp', 'Sound_Checkbox', 4)
-convert_header(IMAGES + 'Titles/Title.png',                                                    BASE + 'Images.hpp', 'Title', 4, 48, 40, maskImage=False)
-
-convert_header(IMAGES + 'HUD/HUD_Top.png',                                                     BASE + 'Images.hpp', 'HUD_Top', 4, 23, 32)
-convert_header(IMAGES + 'HUD/HUD_Bottom.png',                                                  BASE + 'Images.hpp', 'HUD_Bottom', 4, 23, 32)
-
+convert_header(IMAGES + 'Titles/PPOT.png',                                                     BASE + 'Images.hpp', 'PPOT', 4, 65, 32)
 convert_header(IMAGES + 'Titles/FreeTheKey.png',                                               BASE + 'Images.hpp', 'FreeTheKey', 4, 128, 64)
 
 convert_header(IMAGES + 'Background.png',                                                       BASE + 'Images.hpp', 'Background', 4, 128, 64)
