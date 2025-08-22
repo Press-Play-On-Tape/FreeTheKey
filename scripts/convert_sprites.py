@@ -113,6 +113,7 @@ deleteFile(BASE + 'Images.hpp')
 
 convert_header(IMAGES + 'Titles/PPOT.png',                                                     BASE + 'Images.hpp', 'PPOT', 4, 65, 32)
 convert_header(IMAGES + 'Titles/FreeTheKey.png',                                               BASE + 'Images.hpp', 'FreeTheKey', 4, 128, 64)
+convert_header(IMAGES + 'Titles/Switch.png',                                                   BASE + 'Images.hpp', 'Switch', 4)
 
 convert_header(IMAGES + 'Background.png',                                                       BASE + 'Images.hpp', 'Background', 4, 128, 64)
 convert_header(IMAGES + 'Menu.png',                                                             BASE + 'Images.hpp', 'Menu', 4, 45, 24)

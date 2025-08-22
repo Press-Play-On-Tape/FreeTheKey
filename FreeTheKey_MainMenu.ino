@@ -31,21 +31,33 @@ void title_Update() {
 
         case GameState::Title_Main:
 
-            if ((titleCounter == 24) && (justPressed & A_BUTTON)) {
+            if (justPressed & DOWN_BUTTON) {
+
+                blackAndWhite = false;
+                game.resetFrameCount();
+
+            }
+
+            if (justPressed & UP_BUTTON) {
+
+                blackAndWhite = true;
+                game.resetFrameCount();
+
+            }
+
+            if ((game.getFrameCount() > 24) && (justPressed & A_BUTTON)) {
 
                 a.initRandomSeed(); 
                 gameState = GameState::Title_Select;
 
             }
 
-            if (titleCounter < 24) titleCounter++;
-
             break;
 
         case GameState::Title_Select:
 
             if (justPressed & B_BUTTON) {
-                gameState = GameState::Title_Main;
+                gameState = GameState::Title_Init;
             }
 
             if (justPressed & A_BUTTON) {
@@ -95,6 +107,9 @@ void title(ArduboyGBase_Config<ABG_Mode::L4_Triplane> &a) {
         case GameState::Title_Main:
             
             SpritesU::drawOverwriteFX(0, 0, Images::FreeTheKey, (blackAndWhite ? 3 : 0) + currentPlane);
+            if (game.getFrameCount() > 256) {
+                SpritesU::drawOverwriteFX(78, 48, Images::Switch, currentPlane);
+            }
             break;
 
         case GameState::Title_Select:

@@ -41,7 +41,7 @@ GameState gameState = GameState::Title_Init;
 #endif
 
 uint8_t titleCounter = 0;
-bool blackAndWhite = true;
+bool blackAndWhite = false;
 
 void setup() {
 
