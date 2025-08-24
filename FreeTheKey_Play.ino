@@ -424,12 +424,17 @@ void play_Update() {
         game.getPuzzle(game.getLevel()).setNumberOfMoves(game.getMoveCount());
         
         if (game.getLevel() < 39 && game.getPuzzle(game.getLevel() + 1).getStatus() == PuzzleStatus::Locked) {
+
             game.getPuzzle(game.getLevel() + 1).setStatus(PuzzleStatus::InProgress);
             game.setLevel(game.getLevel() + 1);
             gameState = GameState::Play_Init;
+            levelSelect.increaseGame();
+
         }
         else {
+
             gameState = GameState::Title_Select;
+
         }
 
         saveCookie();

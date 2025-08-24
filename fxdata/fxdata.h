@@ -6,8 +6,8 @@ using uint24_t = __uint24;
 
 // Initialize FX hardware using  FX::begin(FX_DATA_PAGE); in the setup() function.
 
-constexpr uint16_t FX_DATA_PAGE  = 0xfd32;
-constexpr uint24_t FX_DATA_BYTES = 179499;
+constexpr uint16_t FX_DATA_PAGE  = 0xfd31;
+constexpr uint24_t FX_DATA_BYTES = 179831;
 
 constexpr uint16_t FX_SAVE_PAGE  = 0xfff0;
 constexpr uint24_t FX_SAVE_BYTES = 2;
@@ -90,22 +90,23 @@ namespace Images
   constexpr uint24_t Title_Key = 0x01C7BA;
   constexpr uint24_t Background_128x64 = 0x01CBAC;
   constexpr uint24_t Switch = 0x01E3AE;
-  constexpr uint24_t Background = 0x01E4D0;
-  constexpr uint24_t Menu = 0x01FCD2;
-  constexpr uint24_t Block_12 = 0x021624;
-  constexpr uint24_t Block_13 = 0x02193E;
-  constexpr uint24_t Block_21 = 0x021D60;
-  constexpr uint24_t Block_31 = 0x022152;
-  constexpr uint24_t Key = 0x022724;
-  constexpr uint24_t Cursor = 0x022B16;
-  constexpr uint24_t Levels = 0x022D28;
-  constexpr uint24_t Levels_Cursor = 0x0252AA;
-  constexpr uint24_t Levels_HUD = 0x02542C;
-  constexpr uint24_t Levels_Status = 0x02A3AE;
-  constexpr uint24_t Levels_Number = 0x02A533;
-  constexpr uint24_t Levels_NumberOfMoves = 0x02AA5D;
-  constexpr uint24_t Levels_NumberOfMoves_Numbers = 0x02AB73;
-  constexpr uint24_t Numbers_5x3_1D_MB = 0x02AC0B;
-  constexpr uint24_t Numbers_5x3_2D_MB = 0x02ACC1;
+  constexpr uint24_t ClearProgress = 0x01E4D0;
+  constexpr uint24_t Background = 0x01E61C;
+  constexpr uint24_t Menu = 0x01FE1E;
+  constexpr uint24_t Block_12 = 0x021770;
+  constexpr uint24_t Block_13 = 0x021A8A;
+  constexpr uint24_t Block_21 = 0x021EAC;
+  constexpr uint24_t Block_31 = 0x02229E;
+  constexpr uint24_t Key = 0x022870;
+  constexpr uint24_t Cursor = 0x022C62;
+  constexpr uint24_t Levels = 0x022E74;
+  constexpr uint24_t Levels_Cursor = 0x0253F6;
+  constexpr uint24_t Levels_HUD = 0x025578;
+  constexpr uint24_t Levels_Status = 0x02A4FA;
+  constexpr uint24_t Levels_Number = 0x02A67F;
+  constexpr uint24_t Levels_NumberOfMoves = 0x02ABA9;
+  constexpr uint24_t Levels_NumberOfMoves_Numbers = 0x02ACBF;
+  constexpr uint24_t Numbers_5x3_1D_MB = 0x02AD57;
+  constexpr uint24_t Numbers_5x3_2D_MB = 0x02AE0D;
 }
 

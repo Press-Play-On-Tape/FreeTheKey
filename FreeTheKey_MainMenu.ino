@@ -82,8 +82,7 @@ void title_Update() {
             }
 
             if (levelSelect.aCounter > 32 && levelSelect.bCounter > 32) {
-                cookieReset();
-                saveCookie();
+                gameState = GameState::Title_Clear_Progress;        
             }
 
             if (justPressed & LEFT_BUTTON && levelSelect.x > 0) {
@@ -107,6 +106,26 @@ void title_Update() {
             if (justPressed & UP_BUTTON && levelSelect.y > 0) {
 
                 levelSelect.y--;
+
+            }
+
+            break;
+
+        case GameState::Title_Clear_Progress:
+
+            if (justPressed & A_BUTTON) {
+
+                cookieReset();
+                saveCookie();
+                levelSelect.aCounter = 11;
+                levelSelect.bCounter = 11;   
+                gameState = GameState::Title_Select;
+
+            }
+
+            if (justPressed & B_BUTTON) {
+
+                gameState = GameState::Title_Select;
 
             }
 
@@ -241,6 +260,10 @@ void title(ArduboyGBase_Config<ABG_Mode::L4_Triplane> &a) {
 
             }
 
+            break;
+
+        case GameState::Title_Clear_Progress:
+            SpritesU::drawOverwriteFX(36, 25, Images::ClearProgress, currentPlane);
             break;
 
     }            

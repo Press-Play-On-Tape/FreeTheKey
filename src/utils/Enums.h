@@ -9,7 +9,19 @@ struct LevelSelect {
     uint8_t bCounter = 0;
 
     uint8_t getSelectedPuzzle() {
+
         return (this->y * 5) + this->x;
+        
+    }
+
+    void increaseGame() {
+
+        this->x++;
+        if (this->x == 5) {
+            this->x = 0;
+            this->y++;
+        }
+
     }
 
 };
@@ -27,6 +39,7 @@ enum class GameState : uint8_t {
     Title_Start,
         Title_Main = Title_Start,
         Title_Select,
+        Title_Clear_Progress,
     Title_End,
 
     Play_Init,

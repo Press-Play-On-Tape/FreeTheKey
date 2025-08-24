@@ -118,6 +118,7 @@ convert_header(IMAGES + 'Titles/The.png',                                       
 convert_header(IMAGES + 'Titles/Key.png',                                                       BASE + 'Images.hpp', 'Title_Key', 4)
 convert_header(IMAGES + 'Titles/Background_128x64.png',                                         BASE + 'Images.hpp', 'Background_128x64', 4, 128, 64)
 convert_header(IMAGES + 'Titles/Switch.png',                                                    BASE + 'Images.hpp', 'Switch', 4)
+convert_header(IMAGES + 'Titles/ClearProgress.png',                                             BASE + 'Images.hpp', 'ClearProgress', 4)
 
 convert_header(IMAGES + 'Background.png',                                                       BASE + 'Images.hpp', 'Background', 4, 128, 64)
 convert_header(IMAGES + 'Menu.png',                                                             BASE + 'Images.hpp', 'Menu', 4, 45, 24)
