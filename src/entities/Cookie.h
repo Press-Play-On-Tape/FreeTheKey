@@ -5,8 +5,8 @@
 
 struct Cookie {
 
-    bool hasSavedGame;
-    SoundSettings soundSettings;
+    bool isInitialised;
+    bool blackAndWhite;
     Game game;
 
 };

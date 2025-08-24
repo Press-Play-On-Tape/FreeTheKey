@@ -537,7 +537,88 @@ namespace Levels
         0, 5, 4, // BlockType::Block_21
         0, 0, 0, // BlockType::None
     };
-        
+      
+    uint8_t Puzzle_36[] = {
+        2, 2, 1, // BlockType::Key
+        0, 0, 3, // BlockType::Block_13
+        1, 0, 5, // BlockType::Block_31
+        4, 0, 4, // BlockType::Block_21
+        1, 1, 2, // BlockType::Block_12
+        2, 1, 4, // BlockType::Block_21
+        5, 1, 3, // BlockType::Block_13
+        0, 3, 5, // BlockType::Block_31
+        3, 3, 2, // BlockType::Block_12
+        2, 4, 2, // BlockType::Block_12
+        4, 4, 4, // BlockType::Block_21
+        0, 5, 4, // BlockType::Block_21
+        0, 0, 0, // BlockType::None
+    };
+
+    uint8_t Puzzle_37[] = {
+        1, 2, 1, // BlockType::Key
+        0, 0, 4, // BlockType::Block_21
+        2, 0, 2, // BlockType::Block_12
+        4, 0, 4, // BlockType::Block_21
+        0, 1, 4, // BlockType::Block_21
+        4, 1, 3, // BlockType::Block_13
+        5, 1, 3, // BlockType::Block_13
+        0, 2, 3, // BlockType::Block_13
+        1, 3, 3, // BlockType::Block_13
+        3, 4, 2, // BlockType::Block_12
+        4, 4, 4, // BlockType::Block_21
+        0, 5, 4, // BlockType::Block_21
+        4, 5, 4, // BlockType::Block_21
+        0, 0, 0, // BlockType::None
+    };
+
+    uint8_t Puzzle_38[] = {
+        0, 2, 1, // BlockType::Key
+        0, 0, 2, // BlockType::Block_12
+        3, 0, 5, // BlockType::Block_31
+        1, 1, 4, // BlockType::Block_21
+        3, 1, 2, // BlockType::Block_12
+        2, 2, 2, // BlockType::Block_12
+        5, 2, 3, // BlockType::Block_13
+        3, 3, 4, // BlockType::Block_21
+        2, 4, 2, // BlockType::Block_12
+        3, 4, 4, // BlockType::Block_21
+        3, 5, 5, // BlockType::Block_31
+        0, 0, 0, // BlockType::None
+    };
+
+    uint8_t Puzzle_39[] = {
+        0, 2, 1, // BlockType::Key
+        2, 0, 2, // BlockType::Block_12
+        3, 0, 5, // BlockType::Block_31
+        3, 1, 2, // BlockType::Block_12
+        2, 2, 2, // BlockType::Block_12
+        5, 2, 3, // BlockType::Block_13
+        0, 3, 4, // BlockType::Block_21
+        3, 3, 4, // BlockType::Block_21
+        0, 4, 2, // BlockType::Block_12
+        1, 4, 2, // BlockType::Block_12
+        2, 4, 4, // BlockType::Block_21
+        2, 5, 4, // BlockType::Block_21
+        0, 0, 0, // BlockType::None
+    };
+
+    uint8_t Puzzle_40[] = {
+        3, 2, 1, // BlockType::Key
+        0, 0, 3, // BlockType::Block_13
+        1, 0, 4, // BlockType::Block_21
+        4, 0, 2, // BlockType::Block_12
+        1, 1, 2, // BlockType::Block_12
+        2, 1, 2, // BlockType::Block_12
+        5, 1, 3, // BlockType::Block_13
+        0, 3, 5, // BlockType::Block_31
+        3, 3, 2, // BlockType::Block_12
+        2, 4, 2, // BlockType::Block_12
+        4, 4, 4, // BlockType::Block_21
+        0, 5, 4, // BlockType::Block_21
+        3, 5, 4, // BlockType::Block_21
+        0, 0, 0, // BlockType::None
+    };
+
     uint24_t Puzzles[] = {
         Puzzle_01,
         Puzzle_02,
@@ -573,7 +654,12 @@ namespace Levels
         Puzzle_32,        
         Puzzle_33,        
         Puzzle_34,        
-        Puzzle_35,        
+        Puzzle_35,
+        Puzzle_36,
+        Puzzle_37,
+        Puzzle_38,
+        Puzzle_39,
+        Puzzle_40,
     }
 
 namespace_end 

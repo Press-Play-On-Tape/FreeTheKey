@@ -10,7 +10,6 @@
 #include "src/utils/Constants.h"
 #include "src/utils/Utils.h"
 #include "src/entities/Game.h"
-#include "src/entities/SoundSettings.h"
 #include "src/entities/Cookie.h"
 #include "fxdata/fxdata.h"
 #include "fxdata/images/Images.h"
@@ -32,7 +31,8 @@ decltype(a) a;
 
 Cookie cookie;
 Game &game = cookie.game;
-SoundSettings &soundSettings = cookie.soundSettings;
+LevelSelect levelSelect;
+uint8_t titleCounter = 0;
 
 #if not defined(DEBUG) && not defined(DEBUG_BASIC)
 GameState gameState = GameState::SplashScreen_Start;
@@ -40,8 +40,6 @@ GameState gameState = GameState::SplashScreen_Start;
 GameState gameState = GameState::Title_Init;
 #endif
 
-uint8_t titleCounter = 0;
-bool blackAndWhite = false;
 
 void setup() {
 
@@ -50,27 +48,16 @@ void setup() {
     a.startGray();
     
     FX::begin(FX_DATA_PAGE, FX_SAVE_PAGE);
-    // FX::loadGameState((uint8_t*)&cookie, sizeof(cookie));
+    FX::loadGameState((uint8_t*)&cookie, sizeof(cookie));
 
     game.setFrameCount(0);
 
-    // game.getPuzzle(0).setStatus(PuzzleStatus::Complete);
-    // game.getPuzzle(1).setStatus(PuzzleStatus::Complete);
-    // game.getPuzzle(2).setStatus(PuzzleStatus::Complete);
-    // game.getPuzzle(3).setStatus(PuzzleStatus::Complete);
-    // game.getPuzzle(4).setStatus(PuzzleStatus::Complete);
-    // game.getPuzzle(5).setStatus(PuzzleStatus::Complete);
-    // game.getPuzzle(6).setStatus(PuzzleStatus::Complete);
-    // game.getPuzzle(7).setStatus(PuzzleStatus::Complete);
-    // game.getPuzzle(8).setStatus(PuzzleStatus::Complete);
-    // game.getPuzzle(9).setStatus(PuzzleStatus::Complete);
-    // game.getPuzzle(10).setStatus(PuzzleStatus::Complete);
-    // game.getPuzzle(11).setStatus(PuzzleStatus::InProgress);
+    if (!cookie.isInitialised) {
 
-    game.getPuzzle(0).setStatus(PuzzleStatus::InProgress);
-
-    for (uint8_t i = 0; i < 40; i++) {
-    game.getPuzzle(i).setStatus(PuzzleStatus::Complete);
+        cookieReset();
+        cookie.isInitialised = true;
+        saveCookie();
+        
     }
 
 }

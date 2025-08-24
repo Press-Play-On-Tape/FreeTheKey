@@ -1,5 +1,19 @@
 #pragma once
 
+struct LevelSelect {
+
+    uint8_t selectedPuzzle = 0;
+    uint8_t x = 0;
+    uint8_t y = 0;
+    uint8_t aCounter = 0;
+    uint8_t bCounter = 0;
+
+    uint8_t getSelectedPuzzle() {
+        return (this->y * 5) + this->x;
+    }
+
+};
+
 enum class GameState : uint8_t {
 
     SplashScreen_Start,

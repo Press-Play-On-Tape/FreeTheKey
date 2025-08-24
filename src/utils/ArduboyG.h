@@ -290,6 +290,10 @@ struct ArduboyG_Common : public BASE
     static uint8_t justPressedButtons() {
         return (~Arduboy2Base::previousButtonState & Arduboy2Base::currentButtonState);
     }
+
+    static uint8_t justReleasedButtons(uint8_t button) {
+        return ((Arduboy2Base::previousButtonState & button) && !(Arduboy2Base::currentButtonState & button));
+    }
     
     static uint8_t pressedButtons() {
         return Arduboy2Base::currentButtonState;

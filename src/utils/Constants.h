@@ -10,7 +10,6 @@
 #define _DEBUG_RAND
 
 
-
 namespace Constants {
 
     constexpr uint8_t levelSelect_Offset[] = { 0, 2, 6, 21, 36, 42, 54, 55};

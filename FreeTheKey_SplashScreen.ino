@@ -27,7 +27,7 @@ void splashScreen(ArduboyGBase_Config<ABG_Mode::L4_Triplane> &a) {
     uint8_t currentPlane = a.currentPlane();
     uint8_t idx = static_cast<uint8_t>(gameState) - static_cast<uint8_t>(GameState::SplashScreen_Start);
 
-    if (blackAndWhite) idx = idx + 4;
+    if (cookie.blackAndWhite) idx = idx + 4;
 
     SpritesU::drawOverwriteFX(32, 16, Images::PPOT, (3 * idx) + currentPlane);
 

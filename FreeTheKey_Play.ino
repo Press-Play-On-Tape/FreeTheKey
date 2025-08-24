@@ -243,6 +243,7 @@ void play_Update() {
                 break;
 
             case GameState::Play_Menu_MainMenu:
+                levelSelect.aCounter = 11;
                 gameState = GameState::Title_Select;
                 break;
 
@@ -443,23 +444,23 @@ void play(ArduboyGBase_Config<ABG_Mode::L4_Triplane> &a) {
     uint8_t currentPlane = a.currentPlane();
     if (a.needsUpdate()) play_Update();
 
-    SpritesU::drawOverwriteFX(0, 0, Images::Background, (blackAndWhite ? 3 : 0) + currentPlane);
+    SpritesU::drawOverwriteFX(0, 0, Images::Background, (cookie.blackAndWhite ? 3 : 0) + currentPlane);
 
     uint8_t menu_Idx = gameState == GameState::Play_Init ? 0 : static_cast<uint8_t>(gameState) - static_cast<uint8_t>(GameState::Play);
     if (game.getUndoCount() > 0) menu_Idx = menu_Idx + 4;
-    if (blackAndWhite) menu_Idx = menu_Idx + 8;
+    if (cookie.blackAndWhite) menu_Idx = menu_Idx + 8;
     SpritesU::drawOverwriteFX(83, 38, Images::Menu, (menu_Idx * 3) + currentPlane);
 
 
     // Level ..
 
-    SpritesU::drawOverwriteFX(113, 0, Images::Numbers_5x3_2D_MB, (blackAndWhite ? 300 : 0) + ((game.getLevel() + 1) * 3) + currentPlane);
+    SpritesU::drawOverwriteFX(113, 0, Images::Numbers_5x3_2D_MB, (cookie.blackAndWhite ? 300 : 0) + ((game.getLevel() + 1) * 3) + currentPlane);
 
 
     // Moves ..
 
-    SpritesU::drawOverwriteFX(109, 8, Images::Numbers_5x3_1D_MB, (blackAndWhite ? 30 : 0) + ((game.getMoveCount() / 100) * 3) + currentPlane);
-    SpritesU::drawOverwriteFX(113, 8, Images::Numbers_5x3_2D_MB, (blackAndWhite ? 300 : 0) + ((game.getMoveCount() % 100) * 3) + currentPlane);
+    SpritesU::drawOverwriteFX(109, 8, Images::Numbers_5x3_1D_MB, (cookie.blackAndWhite ? 30 : 0) + ((game.getMoveCount() / 100) * 3) + currentPlane);
+    SpritesU::drawOverwriteFX(113, 8, Images::Numbers_5x3_2D_MB, (cookie.blackAndWhite ? 300 : 0) + ((game.getMoveCount() % 100) * 3) + currentPlane);
 
 
     uint8_t selectedBlock = game.getBlock_Idx(game.getPlayer().getX(), game.getPlayer().getY());
@@ -467,7 +468,7 @@ void play(ArduboyGBase_Config<ABG_Mode::L4_Triplane> &a) {
     for (uint8_t i = 0; i < Constants::Block_Count; i++) {
 
         uint8_t idx = (i == selectedBlock ? game.getFrameCount(48) * 3 : 0);
-        idx = idx + (blackAndWhite ? 6 : 0);
+        idx = idx + (cookie.blackAndWhite ? 6 : 0);
 
         Block &block = game.getBlock(i);
 
@@ -503,7 +504,7 @@ void play(ArduboyGBase_Config<ABG_Mode::L4_Triplane> &a) {
     if (selectedBlock == Constants::NoBlock) {
 
         uint8_t idx = game.getFrameCount(48) * 3;
-        idx = idx + (blackAndWhite ? 6 : 0);        
+        idx = idx + (cookie.blackAndWhite ? 6 : 0);        
         SpritesU::drawPlusMaskFX(Constants::Grid_Left +  (Constants::Grid_Size * game.getPlayer().getX()),  Constants::Grid_Top + (Constants::Grid_Size * game.getPlayer().getY()), Images::Cursor, idx + currentPlane);
 
     }
